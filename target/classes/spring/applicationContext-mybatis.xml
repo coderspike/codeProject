@@ -4,6 +4,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans  
 http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
+    <!--这是将mapping文件放在了每个模块的mapping文件夹下-->
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+    <!--<property name="dataSource" ref="dataSource" />-->
+    <!--&lt;!&ndash; mybatis全局配置文件 &ndash;&gt;-->
+    <!--<property name="configLocation" value="classpath:applicationContext-mybatis.xml"></property>-->
+    <!--&lt;!&ndash; 自动扫描mapping.xml文件 &ndash;&gt;-->
+    <!--<property name="mapperLocations" value="classpath*:net/dagongsoft/**/mapping/*.xml"></property>-->
+    <!--</bean>-->
+
     <!--上面的xsd最好和当前使用的Spring版本号一致,如果换了Spring版本,这个最好也跟着改-->
     <!-- spring和MyBatis整合，不需要mybatis的配置映射文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

@@ -20,7 +20,7 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 </beans>
         <!--
         1、applicationContext.xml web应用程序的应用配置文件,通常作为主配置文件写在web.xml中,当读取web.xml时也会读取applicationContext.xml文件。
-        2、如果在web.xml中没配置也可以在这里引用
+        2、如果在web.xml中没配置也可以在这里引用,这样引用的好处是可动态增减
         <import resource="applicationContext-*.xml"/>
         3、applicationContext.xml和spring-mvc.xml分别是spring和springmvc的容器，是父子容器的关系。
         -->

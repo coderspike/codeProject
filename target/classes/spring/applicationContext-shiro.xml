@@ -12,6 +12,7 @@
         <property name="realm" ref="myShiroRealm"/>
         <property name="cacheManager" ref="cacheManager"/>
     </bean>
+    <!--可以用shiro和Ehcache混合使用-->
 
     <!-- 項目自定义的Realm -->
     <bean id="myShiroRealm" class="authority.MyShiroRealm">
@@ -21,11 +22,13 @@
     <!-- Shiro Filter -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
+        <!--控制的跳转地址-->
         <property name="loginUrl" value="/login.jhtml"/>
         <property name="successUrl" value="/loginsuccess.jhtml"/>
         <property name="unauthorizedUrl" value="/error.jhtml"/>
         <property name="filterChainDefinitions">
             <value>
+                <!--这个是有顺序的，目前未登录的都直接跳转到登录页-->
                 /index.jhtml = authc
                 /login.jhtml = anon
                 /checkLogin.json = anon
