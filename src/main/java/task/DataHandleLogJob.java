@@ -1,9 +1,13 @@
 package task;
 
 import com.mongodb.*;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import util.SpringBeanUtil;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,15 +17,19 @@ import java.util.List;
  * 之前写的日志处理类，用到了mongo的 mapReduce函数,还是有一些参考借鉴意义的。
  * ********************************
  */
-public class DataHandleLogJob {
+public class DataHandleLogJob implements Job {
     private static final int MAX_HANDLE_STEP = 2;
+
+    @Resource
+    private MongoTemplate mongoTemplate;
+
 
     /**
      * 定时任务，将库中的数据groupby并判断是否处理成功后存入dbsLogResult库中。
      */
     public void work() {
         String handleResult;
-        MongoTemplate mongoTemplate = SpringBeanUtil.getBean("dbsLog");
+//        MongoTemplate mongoTemplate = SpringBeanUtil.getBean("dbsLog");
         DBCollection dbsLog = (DBCollection) mongoTemplate.getCollection("dbsLog");
         String map = " function() {\n" +
                 "emit(this.dataFlowId, {handleType:[this.handleType]});};";
@@ -102,4 +110,8 @@ public class DataHandleLogJob {
     }
 
 
+    @Override
+    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        work();
+    }
 }

@@ -50,6 +50,7 @@
         <async-supported>true</async-supported>
         <init-param>
             <param-name>encoding</param-name>
+            <!--解决post中文乱码问题-->
             <param-value>UTF-8</param-value>
         </init-param>
     </filter>

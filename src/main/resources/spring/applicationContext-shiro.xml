@@ -31,6 +31,7 @@
                 <!--这个是有顺序的，目前未登录的都直接跳转到登录页-->
                 /index.jhtml = authc
                 /login.jhtml = anon
+                /send/sendMsg =anon
                 /checkLogin.json = anon
                 /loginsuccess.jhtml = anon
                 /logout.json = anon

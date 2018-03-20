@@ -4,18 +4,26 @@ import com.alibaba.druid.support.json.JSONUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
 public class UserController {
+    @Resource
+    private RedisTemplate<String, String> redisTemplate;
+    @Resource
+    private AmqpTemplate amqpTemplate;
 
     @RequestMapping("/index.jhtml")
     public ModelAndView getIndex(HttpServletRequest request) throws Exception {
@@ -75,6 +83,10 @@ public class UserController {
     @ResponseBody
     public String checkLogin(String username, String password) throws Exception {
         System.out.println("调用shiro 验证");
+        this.testJedis();//测试redis
+        //rabbitMQ发送消息
+        long t = new Date().getTime();
+        amqpTemplate.convertAndSend("queueTestKey", t + "");
         Map<String, Object> result = new HashMap<String, Object>();
         try {
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -89,6 +101,15 @@ public class UserController {
         }
         result.put("success", true);
         return JSONUtils.toJSONString(result);
+    }
+
+    /**
+     * redis的测试方法
+     */
+    private void testJedis() {
+        redisTemplate.opsForValue().set("123", "12345");
+        String result = redisTemplate.opsForValue().get("123");
+        System.out.println("=====Redis缓存测试======：" + result);
     }
 
     /**

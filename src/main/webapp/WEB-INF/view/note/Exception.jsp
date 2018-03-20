@@ -13,7 +13,7 @@
 <body>
 <%--应该是spring的包有冲突，但是项目中没找到，我日--%>
 java.lang.NoSuchMethodError: org.springframework.util.ObjectUtils.unwrapOptional(Ljava/lang/Object;)Ljava/lang/Object;
-
-
+<%--jar包冲突问题--%>
+java.lang.IncompatibleClassChangeError: Implementing class
 </body>
 </html>

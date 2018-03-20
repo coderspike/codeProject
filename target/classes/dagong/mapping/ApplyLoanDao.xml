@@ -45,6 +45,15 @@
         <if test="applyFlowId != null and '' != applyFlowId">
             and applyFlowId = #{applyFlowId}
         </if>
+        <!--choose标签，通常用于sql逻辑判断-->
+        <if test="areaId!=null and ''!=areaId">
+            <choose>
+                <when test="areaId == 'bridicms'">and areaId != 'other'</when>
+                <otherwise>
+                    and areaId = #{areaId}
+                </otherwise>
+            </choose>
+        </if>
         <if test="startTime != null and '' != startTime">
             and startTime = #{startTime}
         </if>
@@ -207,23 +216,23 @@
         UPDATE apply_loan_information
         WHERE id = #{id}
     </update>
-    
-     <!-- 查询所有信息 -->
-    <select id="queryConList"  parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan" 
-    						resultType="net.dagongsoft.platform.applyLoanManage.domain.TApplyLoan">
-       select loan.loanProjectName,loan.requestLimit,loan.hopeRate,loan.startTime,`user`.customerName,opt.*
-		from apply_loan_information loan
-		join rate_result_opinion opt on opt.loanId = loan.id 
-		join customer_user user on `user`.id = loan.customerUserId
-		<where>
-			1=1
-			<if test=" userIds != null and userIds !='' ">
-				and `user`.businessManId in (${userIds})
-			</if>
-			<if test=" customerName != null and customerName !='' ">
-				and `user`.customerName like concat('%',#{customerName},'%')
-			</if>
-		</where>
+
+    <!-- 查询所有信息 -->
+    <select id="queryConList" parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan"
+            resultType="net.dagongsoft.platform.applyLoanManage.domain.TApplyLoan">
+        select loan.loanProjectName,loan.requestLimit,loan.hopeRate,loan.startTime,`user`.customerName,opt.*
+        from apply_loan_information loan
+        join rate_result_opinion opt on opt.loanId = loan.id
+        join customer_user user on `user`.id = loan.customerUserId
+        <where>
+            1=1
+            <if test=" userIds != null and userIds !='' ">
+                and `user`.businessManId in (${userIds})
+            </if>
+            <if test=" customerName != null and customerName !='' ">
+                and `user`.customerName like concat('%',#{customerName},'%')
+            </if>
+        </where>
         <if test="sortord!=null and ''!= sortord">
             order by ${sortord}
         </if>
@@ -231,40 +240,41 @@
             limit #{offset},#{rows}
         </if>
     </select>
-    
-      <!-- 查询用户下所有报告信息 -->
-   <select id="queryAllList"  parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan" 
-    						resultType="java.util.Map">
-    select loan.requestLimit,loan.hopeRate,loan.startTime,`user`.customerName,opt.*,company.loanCompanyName
-		from rate_result_opinion opt 
-	left join apply_loan_information loan on opt.loanId = loan.id 
-	left join customer_user user on loan.customerUserId =`user`.id 
-	left join loan_company_information company on loan.id = company.applyFlowId
-		<where>
-			1=1
-			<if test="customerUserId != null and '' != customerUserId">
-            	and loan.customerUserId = #{customerUserId}
-        	</if>
-		</where>
-       ORDER BY loan.startTime desc 
+
+    <!-- 查询用户下所有报告信息 -->
+    <select id="queryAllList" parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan"
+            resultType="java.util.Map">
+        select loan.requestLimit,loan.hopeRate,loan.startTime,`user`.customerName,opt.*,company.loanCompanyName
+        from rate_result_opinion opt
+        left join apply_loan_information loan on opt.loanId = loan.id
+        left join customer_user user on loan.customerUserId =`user`.id
+        left join loan_company_information company on loan.id = company.applyFlowId
+        <where>
+            1=1
+            <if test="customerUserId != null and '' != customerUserId">
+                and loan.customerUserId = #{customerUserId}
+            </if>
+        </where>
+        ORDER BY loan.startTime desc
         <if test="offset != '-1' ">
             limit #{offset},#{rows}
         </if>
     </select>
-    
-   <!-- 查询用户名下所有报告信息数量 -->
-   <select id="queryAllListNum"  parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan" resultType="java.lang.Long">
-    select count(1)
-		from rate_result_opinion opt 
-	left join apply_loan_information loan on opt.loanId = loan.id 
-	left join customer_user user on loan.customerUserId =`user`.id 
-	left join loan_company_information company on loan.id = company.applyFlowId
-		<where>
-			1=1
-			<if test="customerUserId != null and '' != customerUserId">
-            	and loan.customerUserId = #{customerUserId}
-        	</if>
-		</where>
-       ORDER BY loan.startTime desc    
+
+    <!-- 查询用户名下所有报告信息数量 -->
+    <select id="queryAllListNum" parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan"
+            resultType="java.lang.Long">
+        select count(1)
+        from rate_result_opinion opt
+        left join apply_loan_information loan on opt.loanId = loan.id
+        left join customer_user user on loan.customerUserId =`user`.id
+        left join loan_company_information company on loan.id = company.applyFlowId
+        <where>
+            1=1
+            <if test="customerUserId != null and '' != customerUserId">
+                and loan.customerUserId = #{customerUserId}
+            </if>
+        </where>
+        ORDER BY loan.startTime desc
     </select>
 </mapper>

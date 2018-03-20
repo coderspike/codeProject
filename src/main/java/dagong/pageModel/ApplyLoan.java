@@ -3,6 +3,7 @@ package dagong.pageModel;
 
 import base.BasePageModel;
 
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -16,12 +17,13 @@ import java.util.Set;
  ***********************************
  */
 public class ApplyLoan extends BasePageModel {
-	
-	private String customerName;
-	private String gmScore;
-	private String reportUrl;
-	
-	private String userIds;
+
+    @Size(min = 5, max = 10, message = "name length is not that good")//可以在加一道过滤
+    private String customerName;
+    private String gmScore;
+    private String reportUrl;
+
+    private String userIds;
     /**
      * 主键
      */
@@ -134,31 +136,29 @@ public class ApplyLoan extends BasePageModel {
     private String startTimeStr;
 
     private String flowStep;
-    
+
     private String flowStepName;//步骤名称
-    
+
     private String flowTypeName;//流程所属名称
-    
-    
 
 
     public String getFlowTypeName() {
-		return flowTypeName;
-	}
+        return flowTypeName;
+    }
 
-	public void setFlowTypeName(String flowTypeName) {
-		this.flowTypeName = flowTypeName;
-	}
+    public void setFlowTypeName(String flowTypeName) {
+        this.flowTypeName = flowTypeName;
+    }
 
-	public String getFlowStepName() {
-		return flowStepName;
-	}
+    public String getFlowStepName() {
+        return flowStepName;
+    }
 
-	public void setFlowStepName(String flowStepName) {
-		this.flowStepName = flowStepName;
-	}
+    public void setFlowStepName(String flowStepName) {
+        this.flowStepName = flowStepName;
+    }
 
-	public Set<String> getClientEndSet() {
+    public Set<String> getClientEndSet() {
         return clientEndSet;
     }
 
@@ -390,35 +390,35 @@ public class ApplyLoan extends BasePageModel {
         this.flowStep = flowStep;
     }
 
-	public String getUserIds() {
-		return userIds;
-	}
+    public String getUserIds() {
+        return userIds;
+    }
 
-	public void setUserIds(String userIds) {
-		this.userIds = userIds;
-	}
+    public void setUserIds(String userIds) {
+        this.userIds = userIds;
+    }
 
     public String getCustomerName() {
-		return customerName;
-	}
+        return customerName;
+    }
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 
-	public String getGmScore() {
-		return gmScore;
-	}
+    public String getGmScore() {
+        return gmScore;
+    }
 
-	public void setGmScore(String gmScore) {
-		this.gmScore = gmScore;
-	}
+    public void setGmScore(String gmScore) {
+        this.gmScore = gmScore;
+    }
 
-	public String getReportUrl() {
-		return reportUrl;
-	}
+    public String getReportUrl() {
+        return reportUrl;
+    }
 
-	public void setReportUrl(String reportUrl) {
-		this.reportUrl = reportUrl;
-	}
+    public void setReportUrl(String reportUrl) {
+        this.reportUrl = reportUrl;
+    }
 }
