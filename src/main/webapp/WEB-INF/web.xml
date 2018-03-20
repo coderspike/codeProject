@@ -13,7 +13,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <!--这样.*的配置就不用在applicationContext.xml中单独引用了-->
-        <param-value>classpath*:spring/applicationContext*.xml</param-value>
+        <param-value>classpath*:spring/applicationContext.xml</param-value>
     </context-param>
     <!--shiro Filter-->
     <filter>
@@ -28,6 +28,15 @@
     <filter-mapping>
         <filter-name>shiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- 二期新增重置session时间的filter,引用自mmall项目,对用户的请求进行拦截,判断session等，逻辑自己实现 -->
+    <filter>
+        <filter-name>sessionExpireFilter</filter-name>
+        <filter-class>interceptor.SessionExpireFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sessionExpireFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
     </filter-mapping>
 
     <!-- Spring监听器 -->

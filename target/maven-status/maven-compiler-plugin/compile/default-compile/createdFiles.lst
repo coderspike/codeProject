@@ -75,4 +75,5 @@ cache\EhcacheManager.class
 j2se\aboutClass\aboutClass.class
 common\ServerResponse.class
 base\TreeNode.class
+interceptor\CommonInterceptor.class
 example\service\SysUserService.class

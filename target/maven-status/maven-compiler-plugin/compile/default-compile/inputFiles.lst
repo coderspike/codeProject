@@ -13,6 +13,7 @@ D:\codeProject\src\main\java\util\JsonUtil.java
 D:\codeProject\src\main\java\dagong\pageModel\ApplyLoan.java
 D:\codeProject\src\main\java\common\ResponseCode.java
 D:\codeProject\src\main\java\exception\BizDataException.java
+D:\codeProject\src\main\java\rabbitmq\MessageConsumer.java
 D:\codeProject\src\main\java\base\BasePageModel.java
 D:\codeProject\src\main\java\j2se\aboutClass\serializationClass.java
 D:\codeProject\src\main\java\j2se\collection\ArrayDemo.java
@@ -21,7 +22,7 @@ D:\codeProject\src\main\java\util\ResourceUtil.java
 D:\codeProject\src\main\java\task\Job.java
 D:\codeProject\src\main\java\fastdfs\FdfsClientPool.java
 D:\codeProject\src\main\java\example\service\SysUserService.java
-D:\codeProject\src\main\java\rabbitmq\Consumer3.java
+D:\codeProject\src\main\java\interceptor\CommonInterceptor.java
 D:\codeProject\src\main\java\dagong\service\impl\ApplyLoanServiceImpl.java
 D:\codeProject\src\main\java\fastdfs\fdfsTest.java
 D:\codeProject\src\main\java\j2se\collection\LinkListDemo.java
@@ -38,7 +39,6 @@ D:\codeProject\src\main\java\util\JDBCArsb.java
 D:\codeProject\src\main\java\example\service\impl\SysUserServiceImpl.java
 D:\codeProject\src\main\java\base\TreeNode.java
 D:\codeProject\src\main\java\j2se\collection\JsonDemo.java
-D:\codeProject\src\main\java\example\controller\SendController.java
 D:\codeProject\src\main\java\util\LBSDistanceUtil.java
 D:\codeProject\src\main\java\util\SessionUtil.java
 D:\codeProject\src\main\java\exception\DaoException.java
@@ -52,9 +52,7 @@ D:\codeProject\src\main\java\util\BigDecimalUtil.java
 D:\codeProject\src\main\java\task\DataHandleLogJob.java
 D:\codeProject\src\main\java\util\SpringBeanUtil.java
 D:\codeProject\src\main\java\j2se\aboutClass\Son.java
-D:\codeProject\src\main\java\rabbitmq\Consumer2.java
 D:\codeProject\src\main\java\dagong\dao\ApplyLoanDao.java
-D:\codeProject\src\main\java\example\pojo\BaseRet.java
 D:\codeProject\src\main\java\log\DevelopingLogAnnotation.java
 D:\codeProject\src\main\java\util\FTPUtil.java
 D:\codeProject\src\main\java\task\CloseOrderTask.java
@@ -62,7 +60,6 @@ D:\codeProject\src\main\java\cache\EhcacheManager.java
 D:\codeProject\src\main\java\example\pojo\SysUser.java
 D:\codeProject\src\main\java\j2se\collection\ArrayListDemo.java
 D:\codeProject\src\main\java\util\MD5Util.java
-D:\codeProject\src\main\java\rabbitmq\Consumer.java
 D:\codeProject\src\main\java\j2se\aboutClass\objectClass.java
 D:\codeProject\src\main\java\common\ServerResponse.java
 D:\codeProject\src\main\java\dagong\service\ApplyLoanService.java

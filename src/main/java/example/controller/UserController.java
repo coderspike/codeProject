@@ -4,7 +4,6 @@ import com.alibaba.druid.support.json.JSONUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +21,8 @@ import java.util.Map;
 public class UserController {
     @Resource
     private RedisTemplate<String, String> redisTemplate;
-    @Resource
-    private AmqpTemplate amqpTemplate;
+//    @Resource
+//    private AmqpTemplate amqpTemplate; 暂时不启用rabbitmq
 
     @RequestMapping("/index.jhtml")
     public ModelAndView getIndex(HttpServletRequest request) throws Exception {
@@ -86,7 +85,7 @@ public class UserController {
         this.testJedis();//测试redis
         //rabbitMQ发送消息
         long t = new Date().getTime();
-        amqpTemplate.convertAndSend("queueTestKey", t + "");
+//        amqpTemplate.convertAndSend("queueTestKey", t + "");
         Map<String, Object> result = new HashMap<String, Object>();
         try {
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
