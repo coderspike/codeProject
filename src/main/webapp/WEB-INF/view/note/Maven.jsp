@@ -10,6 +10,7 @@ mvn install //在本地Repository中安装jar
 mvn clean //清除产生的项目
 mvn test //运行测试
 mvn package //打包，根据pom.xml打成war或jar
+mvn clean install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true //打包
 }
 <!-- 环境隔离 -->
 <profiles>

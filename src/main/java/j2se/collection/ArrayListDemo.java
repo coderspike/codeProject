@@ -10,7 +10,6 @@ public class ArrayListDemo {
      * ArrayList
      */
     public static void ArrayList() {
-        // TODO: 2018-03-10 继承关系 
         //public interface List<E> extends Collection<E>
         //public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable
         //public abstract class AbstractList<E> extends AbstractCollection<E> implements List<E>
@@ -19,13 +18,13 @@ public class ArrayListDemo {
         List<Integer> list = new ArrayList();
         list.add(1);
         list.add(1);
-        list.add(null);//允许加入null元素
-        // TODO: 2018-03-10 插入及访问特点
-        //ArrayList 可以添加重复元素。
+        //允许加入null元素，可以添加重复元素。
+        list.add(null);
         list.get(0);
-        //list取值快，插入慢，支持随机访问,线程不安全
-        //添加或删除一个元素需要移动数组中的其他元素。这是ArrayList最大的缺点。当数据量大的时候很耗性能。
-        // TODO: 2018-03-10 这是arraylist的初始化方法，可见底层是一个数组
+        // list取值快，插入慢，支持随机访问,线程不安全
+        // 添加或删除一个元素需要移动数组中的其他元素。这是ArrayList最大的缺点。当数据量大的时候很耗性能。
+        // 适用于频繁的数据读取
+        // TODO: 2018-03-10 这是arraylist的初始化方法，可见底层是一个数组,默认长度为10
 //      if (initialCapacity > 0) {
 //            this.elementData = new Object[initialCapacity];
 //      }

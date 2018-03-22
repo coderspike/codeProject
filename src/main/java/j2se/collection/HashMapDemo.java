@@ -4,14 +4,21 @@ import java.util.*;
 
 public class HashMapDemo {
     public static void main(String[] args) {
-        // 线程不安全
+        // 线程不安全，不能保证存储的顺序性
+        // hashTable是遗留类，与hashMap类似，线程安全
+        // 在key未冲突的情况下，搜索的时间复杂度为o(1)
+        // 默认容量16 加载因子0.75
+        // 散列表（Hash table，也叫哈希表），是根据关键字（Key value）而直接访问在内存存储位置的数据结构。
+        // HashMap底层是个哈希表，使用拉链法解决冲突
         Map map = new HashMap<String, String>();
+        // 不能包含重复键,后面的会覆盖前面的
         map.put(1, 1);
-        map.put(1, 3); //不能包含重复键,后面的会覆盖前面的
+        map.put(1, 3);
         map.put(2, 2);
-        map.put(null, 2);//允许key为null 其实就是放在了第0个位置
-        // TODO: 2018-03-11 遍历HashMap 
-        //Set<Map.Entry<K, V>> entrySet();
+        // 允许key为null 其实就是放在了第0个位置，至多一个
+        map.put(null, 2);
+        // TODO: 2018-03-11 遍历HashMap
+        // Set<Map.Entry<K, V>> entrySet();
         for (Iterator it = map.entrySet().iterator(); it.hasNext(); ) {
             Map.Entry entry = (Map.Entry) it.next();
             Object key = entry.getKey();
