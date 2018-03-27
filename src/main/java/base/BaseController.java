@@ -19,15 +19,23 @@ import java.io.IOException;
  */
 public class BaseController {
 
+    /**
+     * HttpServletRequest对象代表客户端的请求，当客户端通过HTTP协议访问服务器时，
+     * HTTP请求头中的所有信息都封装在这个对象中，通过这个对象提供的方法，可以获得客户端请求的所有信息。
+     */
+
     private static final String JSON_ATTRIBUTE_NAME = "json";
     protected ThreadLocal<HttpServletRequest> request = new ThreadLocal<HttpServletRequest>();
     protected ThreadLocal<HttpServletResponse> response = new ThreadLocal<HttpServletResponse>();
+
+    //ThreadLocal:使用ThreadLocal创建的变量只能被当前线程访问，其他线程则无法访问和修改。
 
     /**
      * 在每个请求前先执行此方法
      *
      * @param req
      * @param res
+     * @ModelAttribute 在每个请求前先执行此方法
      */
     @ModelAttribute
     public void setReqAndRes(HttpServletRequest req, HttpServletResponse res) {

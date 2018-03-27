@@ -18,6 +18,7 @@ public class EhcacheManager {
     private static CacheManager manager;
     private static Cache cache;
 
+
     static {
         init();//调用ehcache配置文件，实例化cache
     }
