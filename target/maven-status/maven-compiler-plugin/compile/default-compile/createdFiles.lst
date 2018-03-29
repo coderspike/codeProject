@@ -18,6 +18,7 @@ dagong\service\ApplyLoanService.class
 util\FTPUtil.class
 common\Const$OrderStatusEnum.class
 dagong\pageModel\ApplyLoan.class
+example\controller\TimeInterceptor.class
 common\Const$PaymentTypeEnum.class
 util\LBSDistanceUtil.class
 j2se\collection\JsonDemo.class
@@ -37,6 +38,7 @@ dagong\controller\ApplyLoanController.class
 example\pojo\SendMessageDto.class
 authority\MyShiroRealm.class
 j2se\aboutClass\serializationClass.class
+util\ResizeImageUtil.class
 base\DataGrid.class
 util\JDBCArsb.class
 j2se\collection\JsonDemo$1.class

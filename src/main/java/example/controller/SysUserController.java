@@ -34,7 +34,11 @@ public class SysUserController {
     @RequestMapping("/showUserToJSONById/{userId}")
     @ResponseBody
     public SysUser showUser(@PathVariable("userId") Long userId) {
+        //计算请求时间，面试中问到过，这是最简单的方法。第二种方法用AOP实现。
+        long startTime = System.currentTimeMillis();
         SysUser user = sysUserService.getById(userId);
+        long endTime = System.currentTimeMillis();
+        System.out.println("程序运行时间：" + (endTime - startTime) + "ms"); //输出程序运行时间
         return user;
     }
 

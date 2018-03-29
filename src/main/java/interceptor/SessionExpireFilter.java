@@ -7,6 +7,9 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * 实现了Filter接口，在servlet包里
+ */
 public class SessionExpireFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

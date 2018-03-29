@@ -28,15 +28,18 @@ public class ArrayListDemo {
 //      if (initialCapacity > 0) {
 //            this.elementData = new Object[initialCapacity];
 //      }
+
         // TODO: 2018-03-10 转数组
         String[] array = new String[list.size()];
         list.toArray(array);
+
         // TODO: 2018-03-10 删除元素，面试经常考，其实是用迭代器调用remove
         Iterator<Integer> it = list.iterator();
         while (it.hasNext()) {
             it.remove();
         }
-        // TODO: 2018-03-10 将list转化为set 
+
+        // TODO: 2018-03-10 将list转化为set
         Set<Integer> set = new HashSet<Integer>(list);
         // TODO: 2018-03-10 拷贝list
         //方法一

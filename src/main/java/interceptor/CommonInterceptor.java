@@ -8,6 +8,10 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * HandlerInterceptor 编写拦截器的时候实现的是这个接口，面试被问住了。
+ * 继承关系如下：HandlerInterceptorAdapter ---》AsyncHandlerInterceptor ---》HandlerInterceptor
+ */
 public class CommonInterceptor extends HandlerInterceptorAdapter {
     private final Logger log = LoggerFactory.getLogger(CommonInterceptor.class);
     public static final String LAST_PAGE = "com.alibaba.lastPage";

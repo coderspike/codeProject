@@ -7,6 +7,7 @@
        http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--redis 基于key-value的数据库,是内存存储的数据结构服务器,可用作数据库,高速缓存和消息队列代理。支持string，list,set，hash(字典)，sorted set（有序集合）-->
 
     <!-- 读取redis开始 -->
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">

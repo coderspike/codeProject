@@ -2,7 +2,6 @@ package example.mapper;
 
 
 import example.pojo.SysUser;
-import org.springframework.stereotype.Repository;
 
 public interface SysUserMapper {
     /**
