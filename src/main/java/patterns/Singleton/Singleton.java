@@ -7,6 +7,8 @@ package patterns.Singleton;
 public class Singleton {
     private static Singleton instance;
 
+    //私有构造器
+    //对象的创建就是通过构造方法来完成，其功能主要是完成对象的初始化。
     private Singleton() {
     }
 
@@ -28,6 +30,7 @@ class Singleton2 {
     private Singleton2() {
     }
 
+    //new操作不是原子操作，所以加在这里来控制线程安全
     public static synchronized Singleton2 getInstance() {
         if (instance2 == null) {
             instance2 = new Singleton2();

@@ -13,7 +13,6 @@ public class PayFactory {
         } else if ("unionPay".equals(payMethod)) {
             pay = new UnionPay();
         }
-
         return pay;
     }
 
