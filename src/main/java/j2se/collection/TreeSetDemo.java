@@ -10,8 +10,17 @@ public class TreeSetDemo {
     public void treeSet() {
 
         Set set = new TreeSet();
-        // 1、底层存储基于TreeMap实现，内部使用红黑树结构表存储元素，所以保证了元素的顺序性。
-        // 2、元素不可为null。
-        // 3、遍历时不支持随机访问，只能通过迭代器和for-each遍进行遍历。
+
+        /*
+        1 继承关系
+        public class TreeSet<E> extends AbstractSet<E>
+        implements NavigableSet<E>, Cloneable, java.io.Serializable
+
+        public interface NavigableSet<E> extends SortedSet<E>
+
+        TreeSet跟HashSet一样，内部都使用Map，HashSet内部使用的是HashMap，但是TreeSet使用的是NavigableMap。
+
+        */
+
     }
 }
