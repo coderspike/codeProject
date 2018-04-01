@@ -16,7 +16,7 @@ public class HashSetDemo {
           其中 AbstractSet 提供 Set 接口的骨干实现，从而最大限度地减少了实现此接口所需的工作
           public abstract class AbstractSet<E> extends AbstractCollection<E> implements Set<E>
 
-          HashSet实现Set接口，不允许有重复，在对象存入set要先确保对象重写equals()和hashCode()方法。
+          HashSet实现Set接口，不允许有重复[与List最大的不同，另外就是无序]，在对象存入set要先确保对象重写equals()和hashCode()方法[没实现的话走的是默认方法]。
           HashSet是基于HashMap实现的。
 
           不能保证存取顺序，因为HashSet内部使用的是HashMap,存储时是通过hash函数得到的下标。

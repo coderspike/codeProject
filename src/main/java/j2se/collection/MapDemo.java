@@ -8,8 +8,7 @@ public class MapDemo {
           Map ：基于Map接口实现、允许null键/值、非同步、不保证有序(比如插入的顺序)、也不保证序不随时间变化。
           --| HashMap 基于hash表
           --| TreeMap 基于红黑树
+          --| LinkedHashMap 有序的HashMap
          */
-
-
     }
 }

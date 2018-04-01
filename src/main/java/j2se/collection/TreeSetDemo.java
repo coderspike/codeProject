@@ -18,7 +18,7 @@ public class TreeSetDemo {
 
         public interface NavigableSet<E> extends SortedSet<E>
 
-        TreeSet跟HashSet一样，内部都使用Map，HashSet内部使用的是HashMap，但是TreeSet使用的是NavigableMap。
+        与 HashSet 是基于 HashMap 实现一样，TreeSet 同样是基于 TreeMap 实现的
 
         */
 
