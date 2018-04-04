@@ -7,5 +7,18 @@ public class synchronizedDemo {
     对象的同步锁只能被一个线程获取到
      */
 
+    //synchronized方法示例
+    public synchronized void foo1() {
+        System.out.println("synchronized methoed");
+    }
 
+    //synchronized代码块
+    public void foo2() {
+        synchronized (this) {
+            System.out.println("synchronized methoed");
+        }
+    }
 }
+/*
+实例锁 和 全局锁 还没看
+ */
