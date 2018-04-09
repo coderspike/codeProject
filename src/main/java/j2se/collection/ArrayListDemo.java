@@ -61,6 +61,17 @@ public class ArrayListDemo {
            添加或删除一个元素需要移动数组中的其他元素,所以不适合频繁操作。这是ArrayList最大的缺点。当数据量大的时候很耗性能。
            适用于频繁的数据读取
            允许加入null元素，可以添加重复元素。
+
+           ArrayList和LinkedList的区别?
+           最明显的区别是 ArrrayList底层的数据结构是数组，支持随机访问，而 LinkedList 的底层数据结构是双向循环链表，不支持随机访问。
+           使用下标访问一个元素，ArrayList 的时间复杂度是 O(1)，而 LinkedList 是 O(n)。
+
+           ArrayList和Array有什么区别?
+           Array可以容纳基本类型和对象，而ArrayList只能容纳对象。
+           ArrayList 是Java集合框架类的一员,可以称它为一个动态数组. array 是静态的,所以一个数据一旦创建就无法更改他的大小
+
+           如何实现集合排序?
+           你可以使用有序集合，如 TreeSet 或 TreeMap，你也可以使用有顺序的的集合，如 list，然后通过 Collections.sort() 来排序。
         */
         List<Integer> list = new ArrayList();
         list.add(1);

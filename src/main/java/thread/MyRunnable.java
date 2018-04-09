@@ -24,7 +24,13 @@ class TicketsTestRunnable {
         th1.start();
         th2.start();
         th3.start();
-        // 共享数据，应为创建Thread实例时，使用的是同一个MyRunnable类对象
-        // start会直接启动一个新线程，并在新线程中运行run方法
+        /*
+        实现Runnable接口的话可以做到多个线程之间的资源共享
+        共享数据，应为创建Thread实例时，使用的是同一个MyRunnable类对象
+        start会直接启动一个新线程，并在新线程中运行run方法
+        Java不支持类的多重继承，但允许你调用多个接口。所以如果你要继承其他类，当然是调用Runnable接口好了。
+         */
+
+
     }
 }

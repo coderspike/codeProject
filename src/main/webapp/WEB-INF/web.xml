@@ -15,7 +15,7 @@
         <!--这样.*的配置就不用在applicationContext.xml中单独引用了-->
         <param-value>classpath*:spring/applicationContext.xml</param-value>
     </context-param>
-    <!--shiro Filter-->
+    <!--shiro Filter 过滤所有请求-->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

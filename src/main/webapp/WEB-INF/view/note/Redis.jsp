@@ -11,6 +11,8 @@
     <title>Redis</title>
 </head>
 <body>
+<%--简介--%>
+Redis，一个开源的 key-value，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。
 <%--常用操作--%>
 启动
 /usr/local/redis/bin/redis-server /etc/redis.conf

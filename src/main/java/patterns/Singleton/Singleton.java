@@ -9,6 +9,7 @@ public class Singleton {
 
     //私有构造器
     //对象的创建就是通过构造方法来完成，其功能主要是完成对象的初始化。
+    //要是还能写错，真该扇嘴巴子
     private Singleton() {
     }
 

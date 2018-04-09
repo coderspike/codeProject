@@ -18,7 +18,14 @@ public class ThreadDemo implements Runnable {
 
           线程状态：
           线程有新建，运行，就绪，阻塞，死亡等状态。
+          在一个线程完整的生命周期中，它可能经历五种状态：新建（New）、就绪（Runnable）、运行（Running）、阻塞（Blocked）、终止（Zombie）
           wait()会释放对象的同步锁，而sleep()则不会释放锁。
+
+          在Java中什么是线程调度？
+           JVM调度的模式有两种：分时调度和抢占式调度。
+           分时调度是所有线程轮流获得CPU使用权，并平均分配每个线程占用CPU的时间;
+           抢占式调度是根据线程的优先级别来获取CPU的使用权。
+           JVM的线程调度模式采用了抢占式模式。既然是抢占调度，那么我们就能通过设置优先级来“有限”的控制线程的运行顺序，注意“有限”一次。
      */
 
     public static void main(String[] args) {

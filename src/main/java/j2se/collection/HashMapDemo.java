@@ -8,7 +8,7 @@ public class HashMapDemo {
         /*
             数据结构：
             HashMap是数组+链表+红黑树
-            []-->O-->O(链表长度大于8时转换为红黑树)
+            []-->O(Node:key,value,hash,next)-->O(链表长度大于8时转换为红黑树)
             []-->O
             []
             []
@@ -46,7 +46,12 @@ public class HashMapDemo {
         */
 
         /*
-            扩容：
+            扩容：如果bucket满了(超过load factor*current capacity)，就要resize。
+            当hashmap中的元素个数超过数组大小loadFactor时，就会进行数组扩容，loadFactor的默认值为0.75，
+            也就是说，默认情况下，数组大小为16，那么当hashmap中元素个数超过160.75=12的时候，就把数组的大小扩展为2*16=32，
+            即扩大一倍，然后重新计算每个元素在数组中的位置，而这是一个非常消耗性能的操作，
+            所以如果我们已经预知hashmap中元素的个数，那么预设元素的个数能够有效的提高hashmap的性能。
+
             void resize(int newCapacity) { //传入新的容量
             Entry[] oldTable = table; //引用扩容前的Entry数组
             int oldCapacity = oldTable.length;
@@ -88,6 +93,16 @@ public class HashMapDemo {
              散列表（Hash table，也叫哈希表），是根据关键字（Key value）而直接访问在内存存储位置的数据结构。
              HashMap底层是个哈希表，使用拉链法解决冲突
              扩容是一个特别耗性能的操作，所以当程序员在使用HashMap的时候，估算map的大小，初始化的时候给一个大致的数值，避免map进行频繁的扩容。
+
+             WeakHashMap与HashMap的区别是什么?
+             WeakHashMap 的工作与正常的 HashMap 类似，但是使用弱引用作为 key，意思就是当 key 对象没有任何引用时，key/value 将会被回收。
+
+             HashMap是非线程安全的，如果在多线程环境下，可以使用HashTable，HashTable中所有CRUD操作都是线程同步的，
+             同样的，线程同步的代价就是效率变低了。
+
+             再Java 5以后，有了一个线程安全的HashMap——ConcurrentHashMap，ConcurrentHashMap相对于HashTable来说，
+             ConcurrentHashMap将hash表分为16个桶（默认值），诸如get,put,remove等常用操作只锁当前需要用到的桶。
+             试想，原来只能一个线程进入，现在却能同时16个写线程进入（写线程才需要锁定，而读线程几乎不受限制，并发性的提升是显而易见。
         */
 
         // TODO: 2018-03-30 不能包含重复的key，因为通过key的hash决定存储位置，如果key相同则返回false不存入。

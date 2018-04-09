@@ -11,10 +11,18 @@
     <title>Dubbo</title>
 </head>
 <body>
+<%--简介--%>
+Dubbo是阿里巴巴提供的开源的SOA服务化治理的技术框架。
+
+它最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。
+从服务模型的角度来看，Dubbo采用的是一种非常简单的模型，要么是提供方提供服务，
+要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Provider）和服务消费方（Consumer）两个角色。
+
 <%--Dubbo--%>
-dubbo_api:单纯的接口方法
-dubbo_customer:消费者，声明要暴露的服务接口
-dubbo_provider:提供者，对上面提供的服务接口提供实现方法
-dubbo_service:单纯的实现
+Provider: 暴露服务的服务提供方。
+Consumer: 调用远程服务的服务消费方。
+Registry: 服务注册与发现的注册中心(ZooKeeper)。
+Monitor: 统计服务的调用次调和调用时间的监控中心。
+Container: 服务运行容器。
 </body>
 </html>

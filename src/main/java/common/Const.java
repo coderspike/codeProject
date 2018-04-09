@@ -49,6 +49,9 @@ public class Const {
     }
 
 
+    /*
+    一看到枚举就想到单例模式的一种实现
+     */
     public enum OrderStatusEnum {
         CANCELED(0, "已取消"),
         NO_PAY(10, "未支付"),

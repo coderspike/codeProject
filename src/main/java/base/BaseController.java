@@ -16,6 +16,7 @@ import java.io.IOException;
  * Controller层的公共父类，将数据转为json格式并传递至前台，可以获取request、response、session、
  * servletContext。
  * 抽象封装，供controller继承
+ * 开发时尽量多抽象
  */
 public class BaseController {
 
