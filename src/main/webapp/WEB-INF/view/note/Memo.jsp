@@ -167,6 +167,11 @@ TreeMap底层是红黑树，插入顺序按key排序。
 <%--项目介绍--%>
 
 <%--io--%>
+java io包中最重要的类有File、OutputStream、InputStream、Writer、Reader、接口是Serializable。
+字节流在操作的时候，不会用到缓冲；而字符流会用到缓冲。所以，字符流的效率会更高一些。
+1、基于字节操作的I/O接口：InputStream和OutputStream
+2、基于字符操作的I/O接口：Writer和Reader
+3、基于磁盘操作的I/O接口：File
 
 <%--多线程--%>
 多看看把。。。。
@@ -353,6 +358,9 @@ IoC能做什么：把创建和查找依赖对象的控制权交给了容器，�
 好莱坞法则；
 IoC和DI是同一个概念的不同角度描述，“依赖注入”明确描述了“被注入对象依赖IoC容器配置依赖对象”。
 在Spring里，BeanFactory提供了IoC容器最基本功能，而 ApplicationContext 则增加了更多支持企业级功能支持
+
+AOP
+面向切面编程，在我们的应用中，经常需要做一些事情，但是这些事情与核心业务无关，比如，要记录所有update*方法的执行时间时间，操作人等等信息，记录到日志
 
 选择使用Spring框架的原因?
 使用Spring： 第一是使用它的IOC功能，在解耦上达到了配置级别。 第二是使用它对数据库访问事务相关的封装。
