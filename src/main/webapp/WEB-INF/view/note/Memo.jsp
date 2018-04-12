@@ -12,15 +12,17 @@
 </head>
 <body>
 <%--自我介绍--%>
+您好，我叫郭文彬，教育经历分为两段，第一学历是大专，就读于黄淮学院，第二学历是本科，就读于印度迈索尔大学。学历经过留学部的认证
+目前有4年左右的开发经验，今天来贵公司面试一份java开发的岗位。
 
+公明小贷项目是给公明公司开发的一套风险评级贷款评估系统，系统主要分为三个子系统即客户端，业务段，和管理端，业务端主要是面向客户使用的。
 
 <%--j2se--%>
-
 如何判断对象可以被回收？
 一个是引用计数法，新增一个引用计数加1，减少一个引用计数减1，当为0时候进行回收。另外一种格是可达性分析法，通过引用链向下搜索，没有引用连接时，就回收。
 
 jvm的结构是什么样的？
-jvm分为三部分，运行时数据区，类加载器，和执行引擎（总是忘啊！）。
+jvm分为三部分，运行时数据区，类加载器，和执行引擎。
 
 jvm的内存结构是什么样的？
 运行时数据区分为线程共享内存和不共享内存两种，共享内存有方法区和堆，不共享的区域有虚拟机栈，本地方法栈，和程序计数器。
@@ -118,12 +120,21 @@ pay = new UnionPay();
 return pay;
 }
 
-
+冒泡：
+int temp = 0;
+for (int i = 0; i < a.length - 1; i++) {
+for (int j = 0; j < a.length - 1 - i; j++) {
+if (a[j] > a[j + 1]) {
+temp = a[j];
+a[j] = a[j + 1];
+a[j + 1] = temp;
+}
+}
+}
 什么是序列化？
-序列化就是实体和字符序列之间的转换。
+序列化就是实体和字符序列之间的转换，将对象存入到文件或数据库中时候的操作。
 
-
-说一说常用的集合呗？
+说一说常用的集合？
 开发中常用的集合主要分为两类即collection和Map
 collection接口下主要有list和set两个分类，
 
@@ -157,14 +168,10 @@ TreeMap底层是红黑树，插入顺序按key排序。
 
 常用的比较方法是实现Comparator和Comparable接口，Comparator相对灵活一些不用改变类。
 
-
 <%--数据库--%>
 数据库分库分表策略
 对于海量数据的数据库，如果是因为表多而数据多，这时候适合使用垂直切分，即把关系紧密（比如同一模块）的表切分出来放在一个server上。
 如果表并不多，但每张表的数据非常多，这时候适合水平切分，即把表的数据按某种规则（比如按ID散列）切分到多个数据库(server)上。
-
-
-<%--项目介绍--%>
 
 <%--io--%>
 java io包中最重要的类有File、OutputStream、InputStream、Writer、Reader、接口是Serializable。
@@ -174,8 +181,6 @@ java io包中最重要的类有File、OutputStream、InputStream、Writer、Read
 3、基于磁盘操作的I/O接口：File
 
 <%--多线程--%>
-多看看把。。。。
-
 多线程有什么用？
 提高效率，重复操作的场景可以用多线程处理。
 
@@ -187,7 +192,8 @@ java io包中最重要的类有File、OutputStream、InputStream、Writer、Read
 实现多线程常用的两种方法分别是实现runnable接口和继承Thread类。因为java是单继承，所以实现Runnable接口的线程更灵活一些。
 区别是实现Runnable的接口的线程可以共享操作数据。
 
-线程有几种状态，即新建，就绪，运行，阻塞，死亡等
+线程有几种状态？
+新建，就绪，运行，阻塞，死亡等
 
 start()方法和Run()方法有什么区别？
 start()方法会启动一个新的线程而run方法只会在原来线程中启动
@@ -343,11 +349,18 @@ Spring MVC的核心流程是什么样的？
 
 用户请求发送到前端控制器DispatcherServlet。
 前端控制器DispatcherServlet接收到请求后，DispatcherServlet会使用HandlerMapping来处理，HandlerMapping会查找到具体进行处理请求的Handler对象。
-HandlerMapping找到对应的Handler之后，并不是返回一个Handler原始对象，而是一个Handler执行链，在这个执行链中包括了拦截器和处理请求的Handler。HandlerMapping返回一个执行链给DispatcherServlet。
+
+HandlerMapping找到对应的Handler之后，并不是返回一个Handler原始对象，而是一个Handler执行链，在这个执行链中包括了拦截器和处理请求的Handler。
+HandlerMapping返回一个执行链给DispatcherServlet。
+
 DispatcherServlet接收到执行链之后，会调用Handler适配器去执行Handler。
+
 Handler适配器执行完成Handler（也就是我们写的Controller）之后会得到一个ModelAndView，并返回给DispatcherServlet。
+
 DispatcherServlet接收到Handler适配器返回的ModelAndView之后，会根据其中的视图名调用视图解析器。
+
 视图解析器根据逻辑视图名解析成一个真正的View视图，并返回给DispatcherServlet。
+
 DispatcherServlet接收到视图之后，会根据上面的ModelAndView中的model来进行视图中数据的填充，也就是所谓的视图渲染。
 渲染完成之后，DispatcherServlet就可以将结果返回给用户了。
 
@@ -369,6 +382,14 @@ AOP
 
 <%--NIO--%>
 介绍一下Java NIO中的Buffer、Channel和Selector的概念和作用。
+NIO（Non-blocking I/O，在Java领域，也称为New I/O），是一种同步非阻塞的I/O模型
+IO是以流的方式处理数据，而NIO是以块的方式处理数据。
+Buffer和Channel是标准NIO中的核心对象
+Buffer:
+Buffer是一个对象，它包含一些要写入或读出的数据。在NIO中，数据是放入buffer对象的
+关于Channel:
+Channel是一个对象，可以通过它读取和写入数据。可以把它看做IO中的流。
+Selector（选择器）是Java NIO的一个组件，能够检测一到多个NIO通道，并能够知晓通道是否为诸如读写事件做好准备。
 
 <%--常用组件--%>
 Dubbo是阿里巴巴提供的开源的SOA服务化治理的技术框架。
