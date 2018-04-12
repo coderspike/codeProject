@@ -9,8 +9,10 @@ public class IODemo {
     基于网络操作的IO接口：Socket
 
     IO流的分类
-    根据处理数据类型的不同分为：字符流和字节流。
-    根据数据流向不同分为：输入流(InputStream)和输出流(OutputStream)。
+    根据[处理数据类型]的不同分为：字符流和字节流。
+    根据[数据流向]不同分为：输入流(InputStream)和输出流(OutputStream)。
+
+
 
 
      */

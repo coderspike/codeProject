@@ -52,5 +52,14 @@ public class NotifyAllTest {
 }
 
 /*
-notify(), wait()依赖于“同步锁”，而“同步锁”是对象锁持有，并且每个对象有且仅有一个！这就是为什么notify(), wait()等函数定义在Object类，而不是Thread类中的原因。
+notify(), wait()依赖于“同步锁”，而“同步锁”是对象锁持有，并且每个对象有且仅有一个！
+这就是为什么notify(), wait()等函数定义在Object类，而不是Thread类中的原因。
+
+Java中notify 和 notifyAll有什么区别？
+notify()方法不能唤醒某个具体的线程，所以只有一个线程在等待的时候它才有用武之地。
+而notifyAll()唤醒所有线程并允许他们争夺锁确保了至少有一个线程能继续运行。
+
+多个线程之间如何协调？
+wait()、notify()、notifyAll()：这三个方法用于协调多个线程对共享数据的存取，所以必须在同步语句块内使用。
+wait方法要等待notify/notifyAll的线程释放锁后才能开始继续往下执行。
  */
