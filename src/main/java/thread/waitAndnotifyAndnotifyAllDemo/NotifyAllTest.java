@@ -62,4 +62,9 @@ notify()方法不能唤醒某个具体的线程，所以只有一个线程在等
 多个线程之间如何协调？
 wait()、notify()、notifyAll()：这三个方法用于协调多个线程对共享数据的存取，所以必须在同步语句块内使用。
 wait方法要等待notify/notifyAll的线程释放锁后才能开始继续往下执行。
+
+不要在Thread实例上使用 wait()和notify()方法
+
+等待在当前对象上的 wait队列
+notifyAll 唤醒全部，然后所有线程去争抢。
  */

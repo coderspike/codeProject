@@ -31,8 +31,9 @@ public class SpringDemo {
     IoC和DI是同一个概念的不同角度描述，“依赖注入”明确描述了“被注入对象依赖IoC容器配置依赖对象”。
     在Spring里，BeanFactory提供了IoC容器最基本功能，而 ApplicationContext 则增加了更多支持企业级功能支持
 
-     选择使用Spring框架的原因?
-     使用Spring： 第一是使用它的IOC功能，在解耦上达到了配置级别。 第二是使用它对数据库访问事务相关的封装。
-     第三就是各种其他组件与Spring的融合，在Spring中更加方便快捷的继承其他一些组件。
+    选择使用Spring框架的原因?
+    使用Spring： 第一是使用它的IOC功能，在解耦上达到了配置级别。 第二是使用它对数据库访问事务相关的封装。
+    第三就是各种其他组件与Spring的融合，在Spring中更加方便快捷的继承其他一些组件。
+
      */
 }

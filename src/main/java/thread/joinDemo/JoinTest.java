@@ -32,3 +32,11 @@ public class JoinTest {
         }
     }
 }
+
+/*
+join的本质
+while (isAlive()) {
+ wait(0);
+}
+
+ */

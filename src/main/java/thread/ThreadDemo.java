@@ -5,29 +5,33 @@ package thread;
  */
 public class ThreadDemo implements Runnable {
     /*
-          实现多线程的两种方式:
-          1、实现Runnable 接口
-          2、继承Thread类
-            [在java.lang包中定义,继承此类必须重写run()方法]
-            public class Thread implements Runnable
+      实现多线程的两种方式:
+      1、实现Runnable 接口
+      2、继承Thread类
+        [在java.lang包中定义,继承此类必须重写run()方法]
+        public class Thread implements Runnable
 
-          区别：
-          1、Runnable 属于接口，所以可以有多个实现；Thread只有一个。
-          2、实现Runnable 的线程类，可以被多个线程实例共享数据[每个线程一份数据]。
-          [一个类只能有一个父类，但是可以实现多个接口，所以实现Runnable 有更好的扩展性，多个线程“资源共享”，建议使用这种方式]
+      区别：
+      1、Runnable 属于接口，所以可以有多个实现；Thread只有一个。
+      2、实现Runnable 的线程类，可以被多个线程实例共享数据[每个线程一份数据]。
+      [一个类只能有一个父类，但是可以实现多个接口，所以实现Runnable 有更好的扩展性，多个线程“资源共享”，建议使用这种方式]
 
-          线程状态：
-          线程有新建，运行，就绪，阻塞，死亡等状态。
-          在一个线程完整的生命周期中，它可能经历五种状态：新建（New）、就绪（Runnable）、运行（Running）、阻塞（Blocked）、终止（Zombie）
-          wait()会释放对象的同步锁，而sleep()则不会释放锁。
+      线程状态：
+      线程有新建，运行，就绪，阻塞，死亡等状态。
+      在一个线程完整的生命周期中，它可能经历五种状态：新建（New）、就绪（Runnable）、运行（Running）、阻塞（Blocked）、终止（Zombie）
+      wait()会释放对象的同步锁，而sleep()则不会释放锁。
 
-          在Java中什么是线程调度？
-           JVM调度的模式有两种：分时调度和抢占式调度。
-           分时调度是所有线程轮流获得CPU使用权，并平均分配每个线程占用CPU的时间;
-           抢占式调度是根据线程的优先级别来获取CPU的使用权。
-           JVM的线程调度模式采用了抢占式模式。既然是抢占调度，那么我们就能通过设置优先级来“有限”的控制线程的运行顺序，注意“有限”一次。
+      在Java中什么是线程调度？
+      JVM调度的模式有两种：分时调度和抢占式调度。
+      分时调度是所有线程轮流获得CPU使用权，并平均分配每个线程占用CPU的时间;
+      抢占式调度是根据线程的优先级别来获取CPU的使用权。
+      JVM的线程调度模式采用了抢占式模式。既然是抢占调度，那么我们就能通过设置优先级来“有限”的控制线程的运行顺序，注意“有限”一次。
 
-          线程池:在程序启动的时候就创建若干线程来响应处理，它们被称为线程池，里面的线程叫工作线程。
+      线程池:在程序启动的时候就创建若干线程来响应处理，它们被称为线程池，里面的线程叫工作线程。
+
+      在后台默默地完成一些系统性的服务，比如垃圾回收线程、JIT线程就可以理解为守护线程.
+      当一个Java应用内，只有守护线程时，Java虚拟机就会自然退出
+
      */
 
     public static void main(String[] args) {
@@ -39,7 +43,6 @@ public class ThreadDemo implements Runnable {
         sleep方法：
         public static native void sleep(long millis) throws InterruptedException;
         synchronized，是关键字；它区分为synchronized代码块和synchronized方法。synchronized的作用是让线程获取对象的同步锁。
-
          */
 
     }
