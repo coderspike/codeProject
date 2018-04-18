@@ -32,6 +32,19 @@ public class ThreadDemo implements Runnable {
       在后台默默地完成一些系统性的服务，比如垃圾回收线程、JIT线程就可以理解为守护线程.
       当一个Java应用内，只有守护线程时，Java虚拟机就会自然退出
 
+      线程安全：
+      public class AccountingSync implements Runnable{
+        static AccountingSync instance=new AccountingSync();
+        static int i=0;
+        @Override
+        public void run() {
+        for(int j=0;j<10000000;j++){
+        synchronized(instance){
+        i++;
+        }
+        }
+        }
+
      */
 
     public static void main(String[] args) {
