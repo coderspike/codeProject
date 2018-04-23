@@ -46,6 +46,7 @@ public class HashMapDemo {
         */
 
         /*
+            就是这个扩容的过程不是线程安全的，多线程操作时线程不安全
             扩容：如果bucket满了(超过load factor*current capacity)，就要resize。
             当hashmap中的元素个数超过数组大小loadFactor时，就会进行数组扩容，loadFactor的默认值为0.75，
             也就是说，默认情况下，数组大小为16，那么当hashmap中元素个数超过160.75=12的时候，就把数组的大小扩展为2*16=32，
