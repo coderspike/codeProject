@@ -41,7 +41,7 @@ public class SpringTransactionNote {
         //获取事务的传播行为
         String getName();
 
-        事务的传播行为
+    事务的传播行为
     事务的传播行为是指当事务方法被另一个事务方法调用时，必须指定事务应该如何传播。
     例如：方法可能继续在现有事务中运行，也可能开启一个新事务，并在自己的事务中运行。Spring定义了七种传播行为：
 
@@ -128,7 +128,7 @@ public class SpringTransactionNote {
         methodB();
     }
 
-    //事务属性 PROPAGATION_MANDATORY
+    //事务属性 PROPAGATION_MANDATORY（必须的）
         methodB(){
         ……
     }
