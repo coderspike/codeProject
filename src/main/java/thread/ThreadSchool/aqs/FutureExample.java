@@ -10,6 +10,10 @@ import java.util.concurrent.Future;
 @Slf4j
 public class FutureExample {
 
+    /*
+    而自从Java 1.5开始，就提供了Callable和Future，通过它们可以在任务执行完毕之后得到任务执行结果。
+    可以获取执行结果
+     */
     static class MyCallable implements Callable<String> {
 
         @Override

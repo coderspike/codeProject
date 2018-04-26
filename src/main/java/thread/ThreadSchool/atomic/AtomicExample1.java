@@ -48,3 +48,11 @@ public class AtomicExample1 {
         // count.getAndIncrement();
     }
 }
+
+/*
+CountDownLatch
+CountDownLatch适用场景
+Java多线程编程中经常会碰到这样一种场景——某个线程需要等待一个或多个线程操作结束（或达到某种状态）才开始执行。
+比如开发一个并发测试工具时，主线程需要等到所有测试线程均执行完成再开始统计总共耗费的时间，
+此时可以通过CountDownLatch轻松实现。
+ */

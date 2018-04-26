@@ -17,6 +17,10 @@ public class CountDownLatchExample1 {
 
         final CountDownLatch countDownLatch = new CountDownLatch(threadCount);
 
+        /*
+        用给定的计数 初始化 CountDownLatch。由于调用了 countDown() 方法，
+        所以在当前计数到达零之前，await 方法会一直受阻塞。
+         */
         for (int i = 0; i < threadCount; i++) {
             final int threadNum = i;
             exec.execute(() -> {

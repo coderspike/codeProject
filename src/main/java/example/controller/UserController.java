@@ -108,6 +108,7 @@ public class UserController {
     private void testJedis() {
         redisTemplate.opsForValue().set("123", "12345");
         String result = redisTemplate.opsForValue().get("123");
+        redisTemplate.delete("123");
         System.out.println("=====Redis缓存测试======：" + result);
     }
 
