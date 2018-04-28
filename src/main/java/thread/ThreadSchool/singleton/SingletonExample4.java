@@ -29,6 +29,7 @@ public class SingletonExample4 {
     private static SingletonExample4 instance = null;
 
     // 静态的工厂方法
+    // 因为指令重排造成线程不安全
     public static SingletonExample4 getInstance() {
         if (instance == null) { // 双重检测机制        // B
             synchronized (SingletonExample4.class) { // 同步锁

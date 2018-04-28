@@ -13,7 +13,8 @@ public class AuthorityInterceptor implements HandlerInterceptor {
 
     //一个拦截器的实例，仅供参考。
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception
+    {
 //        log.info("preHandle");
 //        //请求中Controller中的方法名
 //        HandlerMethod handlerMethod = (HandlerMethod) handler;
@@ -97,12 +98,14 @@ public class AuthorityInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception
+    {
         log.info("postHandle");
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception
+    {
         log.info("afterCompletion");
     }
 }

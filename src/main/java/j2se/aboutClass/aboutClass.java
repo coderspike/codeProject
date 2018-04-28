@@ -4,10 +4,12 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class aboutClass {
-    public aboutClass() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public aboutClass() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException
+    {
     }
 
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException {
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException
+    {
         // TODO: 2018-03-11 创建对象的几种方式
         //1 new的方式
         Father father = new Father();
@@ -16,13 +18,17 @@ public class aboutClass {
         Father father2 = Father.class.newInstance();
 
         //3 newInstance的方式2
-        try {
+        try
+        {
             Father father3 = (Father) Class.forName("com.j2se.aboutClass.Father").newInstance();
-        } catch (InstantiationException e) {
+        } catch (InstantiationException e)
+        {
             e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (IllegalAccessException e)
+        {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e)
+        {
             e.printStackTrace();
         }
     }

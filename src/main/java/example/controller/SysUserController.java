@@ -2,8 +2,7 @@ package example.controller;
 
 import example.pojo.SysUser;
 import example.service.SysUserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,25 +14,25 @@ import java.util.Date;
 
 @Controller
 @RequestMapping("/sysUserController")
+@Slf4j
 public class SysUserController {
-
-    private static final Logger LOG = LoggerFactory.getLogger(SysUserController.class);
-
     @Resource
     private SysUserService sysUserService;
 
     @RequestMapping("/showUserToJspById/{userId}")
-    public String showUser(Model model, @PathVariable("userId") Long userId) {
+    public String showUser(Model model, @PathVariable("userId") Long userId)
+    {
         SysUser user = this.sysUserService.getById(userId);
         model.addAttribute("user", user);
-//        调用出错，暂时没搞定，报Ehcache初始化失败
-//        EhcacheManager.get("123");
+//      调用出错，暂时没搞定，报Ehcache初始化失败
+//      EhcacheManager.get("123");
         return "showUser";
     }
 
     @RequestMapping("/showUserToJSONById/{userId}")
     @ResponseBody
-    public SysUser showUser(@PathVariable("userId") Long userId) {
+    public SysUser showUser(@PathVariable("userId") Long userId)
+    {
         //计算请求时间，面试中问到过，这是最简单的方法。第二种方法用AOP实现。
         long startTime = System.currentTimeMillis();
         SysUser user = sysUserService.getById(userId);
@@ -42,15 +41,15 @@ public class SysUserController {
         return user;
     }
 
-
     @RequestMapping("/test-logback")
     @ResponseBody
-    public Date testLogback() {
-        LOG.trace("-----------------------------------trace");
-        LOG.debug("-----------------------------------debug");
-        LOG.info("-----------------------------------info");
-        LOG.warn("-----------------------------------warn");
-        LOG.error("-----------------------------------error");
+    public Date testLogback()
+    {
+        log.trace("-----------------------------------trace");
+        log.debug("-----------------------------------debug");
+        log.info("-----------------------------------info");
+        log.warn("-----------------------------------warn");
+        log.error("-----------------------------------error");
         return new Date();
     }
 

@@ -25,50 +25,58 @@ public class UserController {
 //    private AmqpTemplate amqpTemplate; 暂时不启用rabbitmq
 
     @RequestMapping("/index.jhtml")
-    public ModelAndView getIndex(HttpServletRequest request) throws Exception {
+    public ModelAndView getIndex(HttpServletRequest request) throws Exception
+    {
         ModelAndView mav = new ModelAndView("index");
         return mav;
     }
 
     @RequestMapping("/exceptionForPageJumps.jhtml")
-    public ModelAndView exceptionForPageJumps(HttpServletRequest request) throws Exception {
+    public ModelAndView exceptionForPageJumps(HttpServletRequest request) throws Exception
+    {
         throw new Exception("空");
     }
 
     @RequestMapping(value = "/businessException.json", method = RequestMethod.POST)
     @ResponseBody
-    public String businessException(HttpServletRequest request) throws Exception {
+    public String businessException(HttpServletRequest request) throws Exception
+    {
         throw new Exception("空");
     }
 
     @RequestMapping(value = "/otherException.json", method = RequestMethod.POST)
     @ResponseBody
-    public String otherException(HttpServletRequest request) throws Exception {
+    public String otherException(HttpServletRequest request) throws Exception
+    {
         throw new Exception();
     }
 
     //跳转到登录页面
     @RequestMapping("/login.jhtml")
-    public ModelAndView login() throws Exception {
+    public ModelAndView login() throws Exception
+    {
         ModelAndView mav = new ModelAndView("login");
         return mav;
     }
 
     //跳转到登录成功页面
     @RequestMapping("/loginsuccess.jhtml")
-    public ModelAndView loginsuccess() throws Exception {
+    public ModelAndView loginsuccess() throws Exception
+    {
         ModelAndView mav = new ModelAndView("loginsuccess");
         return mav;
     }
 
     @RequestMapping("/newPage.jhtml")
-    public ModelAndView newPage() throws Exception {
+    public ModelAndView newPage() throws Exception
+    {
         ModelAndView mav = new ModelAndView("newPage");
         return mav;
     }
 
     @RequestMapping("/newPageNotAdd.jhtml")
-    public ModelAndView newPageNotAdd() throws Exception {
+    public ModelAndView newPageNotAdd() throws Exception
+    {
         ModelAndView mav = new ModelAndView("newPageNotAdd");
         return mav;
     }
@@ -80,22 +88,26 @@ public class UserController {
      */
     @RequestMapping(value = "/checkLogin.json", method = RequestMethod.POST)
     @ResponseBody
-    public String checkLogin(String username, String password) throws Exception {
+    public String checkLogin(String username, String password) throws Exception
+    {
         System.out.println("调用shiro 验证");
         this.testJedis();//测试redis
         //rabbitMQ发送消息
         long t = new Date().getTime();
 //        amqpTemplate.convertAndSend("queueTestKey", t + "");
         Map<String, Object> result = new HashMap<String, Object>();
-        try {
+        try
+        {
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             Subject currentUser = SecurityUtils.getSubject();
-            if (!currentUser.isAuthenticated()) {
+            if (!currentUser.isAuthenticated())
+            {
                 //使用shiro来验证
                 token.setRememberMe(true);
                 currentUser.login(token);//验证角色和权限
             }
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             throw new Exception("验证失败");
         }
         result.put("success", true);
@@ -105,7 +117,8 @@ public class UserController {
     /**
      * redis的测试方法
      */
-    private void testJedis() {
+    private void testJedis()
+    {
         redisTemplate.opsForValue().set("123", "12345");
         String result = redisTemplate.opsForValue().get("123");
         redisTemplate.delete("123");
@@ -117,7 +130,8 @@ public class UserController {
      */
     @RequestMapping(value = "/logout.json", method = RequestMethod.POST)
     @ResponseBody
-    public String logout() {
+    public String logout()
+    {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", true);
         Subject currentUser = SecurityUtils.getSubject();

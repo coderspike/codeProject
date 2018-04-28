@@ -47,5 +47,7 @@ public class SimpleNotify {
         Thread T2 = new T2();
         T2.start();
     }
-
 }
+/*
+wait(), notify()和notifyAll()如果不在同步范围内使用，就会抛出java.lang.IllegalMonitorStateException的异常
+ */

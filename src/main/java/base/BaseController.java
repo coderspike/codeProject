@@ -26,10 +26,10 @@ public class BaseController {
      */
 
     private static final String JSON_ATTRIBUTE_NAME = "json";
+    // 这里居然用的ThreadLocal，之前从来没注意过
+    //ThreadLocal:使用ThreadLocal创建的变量只能被当前线程访问，其他线程则无法访问和修改。
     protected ThreadLocal<HttpServletRequest> request = new ThreadLocal<HttpServletRequest>();
     protected ThreadLocal<HttpServletResponse> response = new ThreadLocal<HttpServletResponse>();
-
-    //ThreadLocal:使用ThreadLocal创建的变量只能被当前线程访问，其他线程则无法访问和修改。
 
     /**
      * 在每个请求前先执行此方法

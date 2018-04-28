@@ -2,8 +2,6 @@ package j2se.aboutClass.enumDemo;
 
 /**
  * 关于颜色的枚举.
- *
- * @author blinkfox on 2017/9/17.
  */
 public enum ColorEnum {
 
@@ -25,7 +23,8 @@ public enum ColorEnum {
      * @param code 代码值
      * @param name 名称
      */
-    ColorEnum(int code, String name) {
+    ColorEnum(int code, String name)
+    {
         this.code = code;
         this.name = name;
     }
@@ -36,9 +35,12 @@ public enum ColorEnum {
      * @param code 颜色code
      * @return 颜色名称
      */
-    public static String getNameByCode(int code) {
-        for (ColorEnum color : ColorEnum.values()) {
-            if (color.code == code) {
+    public static String getNameByCode(int code)
+    {
+        for (ColorEnum color : ColorEnum.values())
+        {
+            if (color.code == code)
+            {
                 return color.name;
             }
         }
@@ -51,17 +53,20 @@ public enum ColorEnum {
      * @return 字符串
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return this.code + ":" + this.name;
     }
 
     /* getter方法. */
 
-    public int getCode() {
+    public int getCode()
+    {
         return code;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 

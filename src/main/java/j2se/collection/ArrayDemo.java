@@ -13,7 +13,6 @@ public class ArrayDemo {
     int[] array = new int[10];
     Person person = new Person("name");
 
-
     /*
      数组复制
      */

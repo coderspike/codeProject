@@ -31,7 +31,7 @@ public class ArrayListDemo {
         */
 
         /*
-        扩容方法：
+        扩容方法：扩大1.5倍将原来的数组copy进新数组 默认容量为10
         //扩容。确保至少能容纳最小容量参数指定的元素个数。
         //这是动态扩容的精髓，ArrayList的奥秘一览无余
            private void grow(int minCapacity)
@@ -73,12 +73,12 @@ public class ArrayListDemo {
            如何实现集合排序?
            你可以使用有序集合，如 TreeSet 或 TreeMap，你也可以使用有顺序的的集合，如 list，然后通过 Collections.sort() 来排序。
         */
+
         List<Integer> list = new ArrayList();
         list.add(1);
         list.add(1);
         list.add(null);
         list.get(0);
-
 
         // TODO: 2018-03-10 这是arraylist的初始化方法，可见底层是一个数组,默认长度为10
         /*

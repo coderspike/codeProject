@@ -18,7 +18,9 @@ public class MyThread4 extends Thread {
     }
 }
 /*
- 如果在sleep状态下停止某一线程，会进入catch语句，并且清除停止状态值，使之变为false(调用isInterrupted()方法的结果是：false)。
+ 如果在sleep状态下停止某一线程，会进入catch语句，并且清除停止状态值，
+ 使之变为false(调用isInterrupted()方法的结果是：false)。
+ 使线程停止的方法：使用interrupt方法终止 正在阻塞中的 线程
  */
 
 class Run4 {

@@ -1,11 +1,10 @@
 package example.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,10 +13,8 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
+@Slf4j
 public class TimeInterceptor {
-
-    private static final Logger logger = LoggerFactory.getLogger(TimeInterceptor.class);
-
     // 一分钟，即1000ms
     private static final long ONE_MINUTE = 1;
 
@@ -28,15 +25,18 @@ public class TimeInterceptor {
      * 统计方法执行耗时Around环绕通知
      */
     @Around(POINT)
-    public Object timeAround(ProceedingJoinPoint joinPoint) {
+    public Object timeAround(ProceedingJoinPoint joinPoint)
+    {
         // 定义返回对象、得到方法需要的参数
         Object obj = null;
         Object[] args = joinPoint.getArgs();
         long startTime = System.currentTimeMillis();
-        try {
+        try
+        {
             obj = joinPoint.proceed(args);
-        } catch (Throwable e) {
-            logger.error("统计某方法执行耗时环绕通知出错", e);
+        } catch (Throwable e)
+        {
+            log.error("统计某方法执行耗时环绕通知出错", e);
         }
         // 获取执行的方法名
         long endTime = System.currentTimeMillis();
@@ -50,10 +50,12 @@ public class TimeInterceptor {
     /**
      * 打印方法执行耗时的信息，如果超过了一定的时间，才打印
      */
-    private void printExecTime(String methodName, long startTime, long endTime) {
+    private void printExecTime(String methodName, long startTime, long endTime)
+    {
         long diffTime = endTime - startTime;
-        if (diffTime > ONE_MINUTE) {
-            logger.warn("-----" + methodName + " 方法执行耗时：" + diffTime + " ms");
+        if (diffTime > ONE_MINUTE)
+        {
+            log.warn("-----" + methodName + " 方法执行耗时：" + diffTime + " ms");
         }
     }
 

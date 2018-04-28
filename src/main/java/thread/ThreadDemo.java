@@ -93,7 +93,6 @@ public class ThreadDemo implements Runnable {
           }
         }
         无论使用锁还是synchronized，本质都是一样，通过锁来实现资源的排它性。
-
          */
 
     }

@@ -3,6 +3,7 @@ package common;
 
 /**
  * 常量类，写项目时尽量避免魔术值。
+ * 一些状态信息等等
  */
 public class Const {
 

@@ -18,7 +18,7 @@ public class EhcacheManager {
     private static CacheManager manager;
     private static Cache cache;
 
-
+    //优先加载经常用来做初始化
     static {
         init();//调用ehcache配置文件，实例化cache
     }

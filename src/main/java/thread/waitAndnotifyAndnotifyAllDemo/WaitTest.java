@@ -23,13 +23,13 @@ public class WaitTest {
         }
     }
 }
-/*
-main start t1
-main wait()
-t1 call notify()
-main continue
+    /*
+    main start t1
+    main wait()
+    t1 call notify()
+    main continue
 
 
-等待在当前对象上的 wait队列
-notify 随机唤醒一个。
- */
+    等待在当前对象上的 wait队列
+    notify 随机唤醒一个。
+     */
