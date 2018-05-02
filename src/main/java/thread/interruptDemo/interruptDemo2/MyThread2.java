@@ -21,7 +21,7 @@ class Run2 {
         thread.start();
         try {
             Thread.sleep(2000);
-            thread.interrupt();
+            thread.interrupt();//通知线程该中断了
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

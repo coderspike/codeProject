@@ -10,7 +10,6 @@ public class MyThread extends Thread {
 }
 
 // 实际上只是打了标记但不暂停
-
 class Run {
     public static void main(String args[]) {
         Thread thread = new MyThread();
@@ -23,3 +22,16 @@ class Run {
         }
     }
 }
+
+/*
+中断线程：
+Thread thread = new Thread(() -> {
+    while (!Thread.interrupted()) {
+        // do more work.
+    }
+});
+thread.start();
+
+// 一段时间以后
+thread.interrupt();
+ */
