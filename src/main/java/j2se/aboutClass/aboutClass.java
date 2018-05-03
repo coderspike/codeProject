@@ -4,36 +4,36 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class aboutClass {
-    public aboutClass() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException
-    {
+    public aboutClass() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
     }
 
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException
-    {
-        // TODO: 2018-03-11 创建对象的几种方式
-        //1 new的方式
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException {
+        /*
+        创建对象的几种方式
+        1 new的方式
+        */
         Father father = new Father();
-
-        //2 newInstance的方式1
+        /*
+        2 newInstance的方式1
+        */
         Father father2 = Father.class.newInstance();
-
-        //3 newInstance的方式2
-        try
-        {
+        /*
+        3 newInstance的方式2
+        */
+        try {
             Father father3 = (Father) Class.forName("com.j2se.aboutClass.Father").newInstance();
-        } catch (InstantiationException e)
-        {
+        } catch (InstantiationException e) {
             e.printStackTrace();
-        } catch (IllegalAccessException e)
-        {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e)
-        {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    //4 Constructor类的newInstance
+    /*
+    4 Constructor类的newInstance
+     */
     Constructor<Father> constructor = Father.class.getConstructor();
     Father stu = constructor.newInstance();
 

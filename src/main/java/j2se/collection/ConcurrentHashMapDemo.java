@@ -31,6 +31,6 @@ public class ConcurrentHashMapDemo {
     这样同步锁是在每一个segment里的, 只要多个修改操作发生在不同的段上, 它们就可以并发进行.
     我们为了区分, 把每个元素segment成为段(有的文章里称作桶), 把segment里面的table的单个元素成为桶.
 
-    segments元素继承自reentrantLock 可以方便的进行锁操作  分段锁
+    segments元素继承自reentrantLock，可以方便的进行锁操作，分段锁。
      */
 }

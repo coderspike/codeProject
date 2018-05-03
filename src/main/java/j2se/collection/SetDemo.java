@@ -2,9 +2,6 @@ package j2se.collection;
 
 /**
  * set 接口讲解
- * 怕，你就输一辈子。
- * 多问为什么，触类旁通的思考。
- * 看十遍不如实践一遍，边实践边理解边记录。
  */
 public class SetDemo {
     /*

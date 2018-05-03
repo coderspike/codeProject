@@ -4,7 +4,7 @@ public class Father implements Cloneable {
     public static String staticVar = "父类的静态变量";
     public String var = "父类的变量";
 
-    // TODO: 2018-03-19 即便没有显示的声明，类的构造器实际上也是静态方法 
+    // TODO: 即便没有显示的声明，类的构造器实际上也是静态方法
     // 静态初始化块
     static {
         System.out.println(staticVar);

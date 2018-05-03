@@ -15,7 +15,7 @@ public class SpringTransactionNote {
     }
 
     public interface TransactionDefinition {
-        int PROPAGATION_REQUIRED = 0;
+        int PROPAGATION_REQUIRED = 0; //默认的选择
         int PROPAGATION_SUPPORTS = 1;
         int PROPAGATION_MANDATORY = 2;
         int PROPAGATION_REQUIRES_NEW = 3;

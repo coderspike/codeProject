@@ -65,8 +65,6 @@ public class Note2 {
 
     线程安全的概念
 
-
-
      */
 
 
@@ -91,7 +89,6 @@ public class Note2 {
     Thread.yield();
     }
     }
-
 
     这样处理：
     public void run(){

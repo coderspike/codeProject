@@ -26,10 +26,4 @@ public class SpringNote1 {
     Spring webmvc：包含了Spring webmvc框架相关的所有类。假如你的应用使用了独立的SpringMVC框架，则无须使用这个jar包。
     Spring webmvc portlet：提供了对Spring MVC的增强，支持了portlet标准。Spring不仅支持传统的web开发，也支持JSR-168 portlet的开发。PortletMVC框架尽可能多的采用WEB MVC的框架，使相同的底层表现层抽象和整合技术。
      */
-
-
-    /*
-
-
-     */
 }

@@ -58,12 +58,14 @@ public class ArrayListDemo {
            List 和 Set都是继承自 Collection接口
            ArrayList相当于动态数组，默认容量为10
            List取值快(是因为数组有下标)，插入慢(是因为要整体移动别的元素)，支持随机访问,线程不安全。
-           添加或删除一个元素需要移动数组中的其他元素,所以不适合频繁操作。这是ArrayList最大的缺点。当数据量大的时候很耗性能。
+           添加或删除一个元素需要移动数组中的其他元素,所以不适合频繁操作。这是ArrayList最大的缺点。
+           当数据量大的时候很耗性能。
            适用于频繁的数据读取
            允许加入null元素，可以添加重复元素。
 
            ArrayList和LinkedList的区别?
-           最明显的区别是 ArrrayList底层的数据结构是数组，支持随机访问，而 LinkedList 的底层数据结构是双向循环链表，不支持随机访问。
+           最明显的区别是 ArrrayList底层的数据结构是数组，支持随机访问，而 LinkedList 的底层数据结构是双向循环链表，
+           不支持随机访问。
            使用下标访问一个元素，ArrayList 的时间复杂度是 O(1)，而 LinkedList 是 O(n)。
 
            ArrayList和Array有什么区别?
@@ -80,18 +82,18 @@ public class ArrayListDemo {
         list.add(null);
         list.get(0);
 
-        // TODO: 2018-03-10 这是arraylist的初始化方法，可见底层是一个数组,默认长度为10
+        // TODO:  这是arraylist的初始化方法，可见底层是一个数组,默认长度为10
         /*
         if (initialCapacity > 0) {
         this.elementData = new Object[initialCapacity];
         }
         */
 
-        // TODO: 2018-03-10 转数组
+        // TODO: 转成数组
         String[] array = new String[list.size()];
         list.toArray(array);
 
-        // TODO: 2018-03-10 删除元素，面试经常考，其实是用迭代器调用remove
+        // TODO: 删除元素，面试经常考，其实是用迭代器调用remove
         Iterator<Integer> it = list.iterator();
         while (it.hasNext()) {
             it.remove();

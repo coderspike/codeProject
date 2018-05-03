@@ -32,6 +32,7 @@ class HDTV {
 
 /*
 不用改变类的内部结构，还能多条件比较。
+集合的两种比较方式，两个接口Comparator 和 Comparable 前者更好用点
  */
 class SizeComparator implements Comparator<HDTV> {
     @Override
