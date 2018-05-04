@@ -23,6 +23,17 @@ public class CyclicBarrierDemo {
     }
 }
 /*
+Fri May 04 10:44:12 CST 2018	Thread 4  is waiting
+Fri May 04 10:44:12 CST 2018	Thread 0  is waiting
+Fri May 04 10:44:12 CST 2018	Thread 2  is waiting
+Fri May 04 10:44:12 CST 2018	Thread 1  is waiting
+Fri May 04 10:44:12 CST 2018	Thread 3  is waiting
+Fri May 04 10:44:12 CST 2018	Thread 3 ended
+Fri May 04 10:44:12 CST 2018	Thread 4 ended
+Fri May 04 10:44:12 CST 2018	Thread 0 ended
+Fri May 04 10:44:12 CST 2018	Thread 2 ended
+Fri May 04 10:44:12 CST 2018	Thread 1 ended
+
 CyclicBarrier可以译为循环屏障，也有类似的功能。
 CyclicBarrier可以在构造时指定需要在屏障前执行await的个数，所有对await的调用都会等待，
 直到调用await的次数达到预定指，所有等待都会立即被唤醒。
