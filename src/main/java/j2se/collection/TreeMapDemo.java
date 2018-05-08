@@ -12,7 +12,8 @@ public class TreeMapDemo {
         public class TreeMap<K,V> extends AbstractMap<K,V> implements NavigableMap<K,V>, Cloneable, java.io.Serializable
         public interface NavigableMap<K,V> extends SortedMap<K,V>
 
-        HashMap不保证数据有序，LinkedHashMap保证数据可以保持插入顺序，而如果我们希望Map可以保持key的大小顺序的时候，我们就需要利用TreeMap了。
+        HashMap不保证数据有序，LinkedHashMap保证数据可以保持插入顺序，而如果我们希望Map可以保持key的大小顺序的时候，
+        我们就需要利用TreeMap了。
 
         TreeMap继承自AbstractMap,内部使用红黑树(一种二叉树)结构实现元素存储。
         元素有序

@@ -90,7 +90,10 @@ public class SpringTransaction {
      PlatformTransactionManager是事务管理的抽象层，Spring根据这个抽象层提供许多不同的具体实现。
      无论是声明式还是编程式的进行事务管理，你都必须正确的定义PlatformTransactionManager的实现。
 
-     Spring事务管理SPI主要包括3个接口：PlatformTransactionManager（进行事务的创建、提交或回滚）、TransactionDefinition（定义事务属性，如隔离级别）和TransactionStatus（事务运行时状态，如是否已完成）。这三者通过PlatformTransactionManager的如下接口进行关联：
+     Spring事务管理SPI主要包括3个接口：PlatformTransactionManager（进行事务的创建、提交或回滚）、
+     TransactionDefinition（定义事务属性，如隔离级别）
+     和TransactionStatus（事务运行时状态，如是否已完成）。
+     这三者通过PlatformTransactionManager的如下接口进行关联：
         // 根据事务定义创建事务，并由TransactionStatus表示它
         TransactionStatus getTransaction(TransactionDefinition definition);
         // 根据事务运行时状态提交或回滚事务

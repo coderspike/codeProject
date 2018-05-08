@@ -25,5 +25,15 @@ public class SpringNote1 {
     Spring web：包含web应用研发时用到Spring框架时所需要的的核心类。
     Spring webmvc：包含了Spring webmvc框架相关的所有类。假如你的应用使用了独立的SpringMVC框架，则无须使用这个jar包。
     Spring webmvc portlet：提供了对Spring MVC的增强，支持了portlet标准。Spring不仅支持传统的web开发，也支持JSR-168 portlet的开发。PortletMVC框架尽可能多的采用WEB MVC的框架，使相同的底层表现层抽象和整合技术。
+
+     常用注解
+    @Component:标准一个普通的spring Bean类。
+    @Controller:标注一个控制器组件类。
+    @Service:标注一个业务逻辑组件类。
+    @Repository:标注一个DAO组件类。
+    @Autowired与@Resource都可以用来装配bean. 都可以写在字段上,或写在setter方法上。
+    @Qualifier：该注解和@Autowired注解搭配使用，用于消除特定bean自动装配的歧义。
+    @RestController意思就是controller里面的方法都以json格式输出，不用再写什么jackjson配置的了
+    @RequestParam ：@RequestParam(required=false)、@RequestParam(defaultValue="0")
      */
 }

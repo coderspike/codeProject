@@ -24,7 +24,8 @@ public class SetDemo {
         1、在实际的需求中，我们需要根据对象的各种属性(标题，时间，点击率，销售额...)进行排序(升序，降序)
         [当一个类希望使得自己的对象可以直接与其他的对象比较时，该类就应该去 implements(实现) Comparable接口]
         2、Comparator的应用场景，一般比较字符串是按照unicode的大小进行排序的
-        [你可能不想或者不能去修改类的源代码。同时，你又希望可以基于对象的某些属性或字段去比较对象的大小，此时，我们就可以让该某类实现Comparator接口。]
+        [你可能不想或者不能去修改类的源代码。同时，你又希望可以基于对象的某些属性或字段去比较对象的大小，
+        此时，我们就可以让该某类实现Comparator接口。]
 
         public class CompareString implements java.util.Comparator<String> {
             @Override
@@ -64,7 +65,8 @@ public class SetDemo {
                                 ---|  LinkedList
                         ---| Set接口      不可以有重复元素的集合
                                 ---| HashSet 线程不安全，存取速度快。底层是以哈希表（hashMap）实现的。
-                                ---| LinkedHashSet 带有双向链表的哈希表结构，线程不安全，保持存取顺序，保持了查询速度较快特点。(本质上基于LinkedHashMap实现)
+                                ---| LinkedHashSet 带有双向链表的哈希表结构，线程不安全，保持存取顺序，
+                                                   保持了查询速度较快特点。(本质上基于LinkedHashMap实现)
                                 ---| TreeSet 红-黑树的数据结构，线程不安全,默认对元素进行自然排序（String）
     */
 

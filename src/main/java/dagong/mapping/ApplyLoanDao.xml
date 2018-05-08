@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+能使用 #{ } 的地方就用 #{ }
+
+select * from user where name = '${name}';
+select * from user where name = #{name};
+对于上述这种查询情况来说，使用 #{ } 和 ${ } 的结果是相同的。
+select * from user where name = ?;
+一个 #{ } 被解析为一个参数占位符 ?
+${ } 仅仅为一个纯碎的 string 替换，在动态 SQL 解析阶段将会进行变量替换
+例如，sqlMap 中如下的 sql
+select * from user where name = '${name}';
+当我们传递的参数为 "ruhua" 时，上述 sql 的解析为：
+select * from user where name = "ruhua";
+预编译之前的 SQL 语句已经不包含变量 name 了。
+综上所得， ${ } 的变量的替换阶段是在动态 SQL 解析阶段，而 #{ }的变量的替换是在 DBMS 中。
+-->
 <mapper namespace="net.dagongsoft.platform.applyLoanManage.dao.ApplyLoanDao">
     <sql id="sqlColumn">
 	   id,                  
@@ -58,6 +74,20 @@
             and startTime = #{startTime}
         </if>
     </sql>
+
+    <!--
+     使用Mybatis持久化框架进行数据查询需要返回的一个实体类的集合,
+     在<select>标签中需要定义的一个属性叫resultMap
+     -->
+    <resultMap type="net.dagongsoft.test.domain.TTest" id="user">
+        <id property="id" column="id" javaType="String"/>
+        <result property="userName" column="userName"/>
+        <result property="password" column="password"/>
+    </resultMap>
+    <select id="getByLogin" resultMap="user">
+        select * from user where
+        userName=#{userName}
+    </select>
 
     <!--获取实体-->
     <select id="get" resultType="net.dagongsoft.platform.applyLoanManage.domain.TApplyLoan">
