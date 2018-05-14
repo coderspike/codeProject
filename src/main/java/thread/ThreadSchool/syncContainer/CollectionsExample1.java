@@ -14,13 +14,10 @@ import java.util.concurrent.Semaphore;
 @Slf4j
 @ThreadSafe
 public class CollectionsExample1 {
-
     // 请求总数
     public static int clientTotal = 5000;
-
     // 同时并发执行的线程数
     public static int threadTotal = 200;
-
     private static List<Integer> list = Collections.synchronizedList(Lists.newArrayList());
 
     public static void main(String[] args) throws Exception {

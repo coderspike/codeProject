@@ -2,7 +2,7 @@ package spring.SpringNote;
 
 public class SpringNote1 {
     /*
-    核心包
+    [核心包]
     spring Core -基本核心类
     spring Bean -控制反转 依赖注入 等
     spring Aop  -aop特性（声明性的事务管理，日志的引入）

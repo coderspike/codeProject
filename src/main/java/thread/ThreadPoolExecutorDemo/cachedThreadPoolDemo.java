@@ -11,8 +11,7 @@ import java.util.concurrent.Executors;
                                       60L, TimeUnit.SECONDS,
                                       new SynchronousQueue<Runnable>());
     }
-
- */
+*/
 public class cachedThreadPoolDemo {
     public void cachedThreadPoolDemo() {
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();

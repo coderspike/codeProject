@@ -44,5 +44,10 @@ flushall：删除所有数据库中的所有key
 set(key, value)：给数据库中名称为key的string赋予值value
 get(key)：返回数据库中名称为key的string的value
 setex(key, time, value)：向库中添加string，设定过期时间time
+------------------------------------------------------------------------
+浅谈Memcached和Redis的区别
+1、Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，zset，hash等数据结构的存储，Memcached基本只支持简单的key-value存储。
+2、Redis支持数据的备份，即master-slave模式的数据备份。
+3、Redis支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用，Memcached不支持持久化。
 </body>
 </html>
