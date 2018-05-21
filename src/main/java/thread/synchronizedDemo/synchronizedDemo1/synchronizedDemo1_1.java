@@ -3,7 +3,8 @@ package thread.synchronizedDemo.synchronizedDemo1;
 public class synchronizedDemo1_1 {
 
     /*
-      当一个线程访问“某对象”的“synchronized方法”或者“synchronized代码块”时，其他线程对“该对象”的该“synchronized方法”或者“synchronized代码块”的访问将被阻塞。
+      当一个线程访问“某对象”的“synchronized方法”或者“synchronized代码块”时，
+      其他线程对“该对象”的该“synchronized方法”或者“synchronized代码块”的访问将被阻塞。
       下面是“synchronized代码块”对应的演示程序。
        */
     public static void main(String[] args) {
