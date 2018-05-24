@@ -1,7 +1,5 @@
 package thread.ThreadSchool.syncContainer;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -12,7 +10,7 @@ public class LinkedBlockingQueueTest {
     事实上并没有跑2个，没太明白。
      */
     public static void main(String[] args) throws InterruptedException {
-        ExecutorService es = Executors.newFixedThreadPool(2, new ThreadFactoryBuilder().setNameFormat("thread-call-runner-%d").build());
+        ExecutorService es = Executors.newFixedThreadPool(2);
         final LinkedBlockingDeque<String> deque = new LinkedBlockingDeque<String>();
         for (int i = 1; i <= 10; i++) {
             deque.add(i + "");
@@ -21,7 +19,7 @@ public class LinkedBlockingQueueTest {
             @Override
             public void run() {
                 while (!deque.isEmpty()) {
-                    System.out.println(deque.poll() + "-" + Thread.currentThread().getName());
+                    System.out.println(deque.poll() + "|" + Thread.currentThread().getName());
                 }
             }
         });
@@ -29,10 +27,9 @@ public class LinkedBlockingQueueTest {
             @Override
             public void run() {
                 while (!deque.isEmpty()) {
-                    System.out.println(deque.poll() + "-" + Thread.currentThread().getName());
+                    System.out.println(deque.poll() + "|" + Thread.currentThread().getName());
                 }
             }
         });
-        Thread.sleep(10000l);
     }
 }

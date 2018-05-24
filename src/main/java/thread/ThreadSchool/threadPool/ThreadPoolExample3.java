@@ -11,16 +11,14 @@ public class ThreadPoolExample3 {
     public static void main(String[] args) {
 
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-
         for (int i = 0; i < 10; i++) {
             final int index = i;
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
-                    log.info("task:{}", index);
+                    log.info("task:{}", Thread.currentThread().getName()+"-----"+index);
                 }
             });
         }
-        executorService.shutdown();
     }
 }

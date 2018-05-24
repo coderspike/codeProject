@@ -11,15 +11,19 @@ public class ThreadPoolExample1 {
     public static void main(String[] args) {
 
         ExecutorService executorService = Executors.newCachedThreadPool();
-
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             final int index = i;
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
-                    log.info("task:{}", index);
+                    log.info("task:{}",Thread.currentThread().getName()+"---"+index);
                 }
             });
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         executorService.shutdown();
     }
