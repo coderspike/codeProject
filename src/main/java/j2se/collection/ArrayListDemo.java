@@ -82,7 +82,7 @@ public class ArrayListDemo {
         list.add(null);
         list.get(0);
 
-        // TODO:  这是arraylist的初始化方法，可见底层是一个数组,默认长度为10
+        // TODO:  这是arraylist的初始化方法，可见底层是一个数组
         /*
         if (initialCapacity > 0) {
         this.elementData = new Object[initialCapacity];

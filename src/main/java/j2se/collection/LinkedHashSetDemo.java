@@ -2,6 +2,7 @@ package j2se.collection;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class LinkedHashSetDemo {
     public void LinkedHashSetDemo() {
@@ -18,5 +19,20 @@ public class LinkedHashSetDemo {
         与LinkedHashMap类似
 
         */
+    }
+
+    public static void main(String[] args) {
+        TreeSet<String> tset = new TreeSet<String>();
+        tset.add("1a");
+        tset.add("3b");
+        tset.add("2c");
+        tset.add("4d");
+        tset.add("5e");
+        tset.add("6f");
+        tset.add("7g");
+        tset.add("8h");
+        for(String str : tset) {
+            System.out.println(str);
+        }
     }
 }

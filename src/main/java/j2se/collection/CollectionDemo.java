@@ -1,7 +1,6 @@
 package j2se.collection;
 
 /**
- * 认真,简约
  */
 public class CollectionDemo {
 

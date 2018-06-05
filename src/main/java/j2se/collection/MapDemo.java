@@ -1,5 +1,8 @@
 package j2se.collection;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MapDemo {
     public static void main(String[] args) {
         /*
@@ -10,5 +13,6 @@ public class MapDemo {
           --| TreeMap 基于红黑树
           --| LinkedHashMap 有序的HashMap
          */
+        Map m = new HashMap();
     }
 }
