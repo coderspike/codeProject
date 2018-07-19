@@ -1,5 +1,7 @@
 package algorithm;
 
+import java.util.HashMap;
+
 public class FindArrayDuplicate {
     /**
      * 查找数组中的重复数字
