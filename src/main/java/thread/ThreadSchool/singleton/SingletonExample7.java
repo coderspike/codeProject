@@ -1,8 +1,8 @@
 package thread.ThreadSchool.singleton;
 
 
-import annoations.Recommend;
-import annoations.ThreadSafe;
+import annoations.annoations.Recommend;
+import annoations.annoations.ThreadSafe;
 
 /**
  * 枚举模式：最安全

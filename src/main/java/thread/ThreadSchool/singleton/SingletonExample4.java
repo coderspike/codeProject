@@ -1,7 +1,7 @@
 package thread.ThreadSchool.singleton;
 
 
-import annoations.NotThreadSafe;
+import annoations.annoations.NotThreadSafe;
 
 /**
  * 懒汉模式 -》 双重同步锁单例模式

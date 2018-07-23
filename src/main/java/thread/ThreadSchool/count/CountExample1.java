@@ -1,7 +1,7 @@
 package thread.ThreadSchool.count;
 
 
-import annoations.NotThreadSafe;
+import annoations.annoations.NotThreadSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import thread.ThreadSchool.sync.SynchronizedExample1;

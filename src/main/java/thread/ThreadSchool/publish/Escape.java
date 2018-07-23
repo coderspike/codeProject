@@ -1,8 +1,8 @@
 package thread.ThreadSchool.publish;
 
 
-import annoations.NotRecommend;
-import annoations.NotThreadSafe;
+import annoations.annoations.NotRecommend;
+import annoations.annoations.NotThreadSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -9,7 +9,7 @@ public class SessionInfo implements Serializable {
     private String sys;// 访问系统 client, service,manage
     private String sessionId;   // 终端登录sessionId
     private String useId; // 用户Id,客户端使用
-    private String userName;       //用户名
+    private String userName;//用户名
     private List<String> methodAuthority; // 方法权限级别，get*,delete*,edit*,find*
     private String loginName; //登录名
     private String roleIds; //角色ids

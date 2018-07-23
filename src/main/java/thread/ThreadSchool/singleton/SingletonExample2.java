@@ -1,7 +1,7 @@
 package thread.ThreadSchool.singleton;
 
 
-import annoations.ThreadSafe;
+import annoations.annoations.ThreadSafe;
 
 /**
  * 饿汉模式

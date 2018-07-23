@@ -1,6 +1,6 @@
 package thread.ThreadSchool.immutable;
 
-import annoations.ThreadSafe;
+import annoations.annoations.ThreadSafe;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 

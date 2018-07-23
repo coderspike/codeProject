@@ -1,8 +1,8 @@
 package thread.ThreadSchool.singleton;
 
 
-import annoations.NotRecommend;
-import annoations.ThreadSafe;
+import annoations.annoations.NotRecommend;
+import annoations.annoations.ThreadSafe;
 
 /**
  * 懒汉模式

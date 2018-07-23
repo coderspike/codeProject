@@ -1,6 +1,6 @@
 package thread.ThreadSchool.syncContainer;
 
-import annoations.ThreadSafe;
+import annoations.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;

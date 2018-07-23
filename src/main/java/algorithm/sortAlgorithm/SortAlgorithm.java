@@ -1,11 +1,11 @@
-package algorithm;
+package algorithm.sortAlgorithm;
 
 /**
  * 一些排序方法
  */
-public class sort {
+public class SortAlgorithm {
     public static void main(String[] args) {
-        new sort().bubbleSort();
+        new SortAlgorithm().bubbleSort();
     }
 
     /**
@@ -28,6 +28,7 @@ public class sort {
 //        for (int i = 0; i < a.length; i++)
 //            System.out.println(a[i]);
     }
+
 
     /**
      * 快速排序

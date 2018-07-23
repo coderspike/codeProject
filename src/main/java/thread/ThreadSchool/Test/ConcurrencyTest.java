@@ -1,7 +1,7 @@
 package thread.ThreadSchool.Test;
 
 
-import annoations.NotThreadSafe;
+import annoations.annoations.NotThreadSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

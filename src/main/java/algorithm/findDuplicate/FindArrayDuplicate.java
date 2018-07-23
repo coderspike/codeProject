@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.findDuplicate;
 
 import java.util.HashMap;
 

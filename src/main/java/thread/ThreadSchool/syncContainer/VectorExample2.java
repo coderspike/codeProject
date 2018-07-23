@@ -1,7 +1,7 @@
 package thread.ThreadSchool.syncContainer;
 
 
-import annoations.NotThreadSafe;
+import annoations.annoations.NotThreadSafe;
 
 import java.util.Vector;
 
