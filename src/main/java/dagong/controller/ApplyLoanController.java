@@ -3,7 +3,7 @@ package dagong.controller;
 
 import base.BaseController;
 import base.Json;
-import common.ServerResponse;
+import base.common.ServerResponse;
 import dagong.pageModel.ApplyLoan;
 import dagong.service.ApplyLoanService;
 import org.slf4j.Logger;
