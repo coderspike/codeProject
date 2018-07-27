@@ -1,6 +1,7 @@
 package algorithm.findDuplicate;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class FindArrayDuplicate {
     /**
@@ -28,9 +29,7 @@ public class FindArrayDuplicate {
                     return number[i];
                 }
                 // 如果不同就交换
-                else {
-                    swap(number, i, number[i]);
-                }
+                swap(number, i, number[i]);
             }
         }
         return -1;
