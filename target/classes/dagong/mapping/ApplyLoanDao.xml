@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+能使用 #{ } 的地方就用 #{ }
+
+select * from user where name = '${name}';
+select * from user where name = #{name};
+对于上述这种查询情况来说，使用 #{ } 和 ${ } 的结果是相同的。
+select * from user where name = ?;
+一个 #{ } 被解析为一个参数占位符 ?
+${ } 仅仅为一个纯碎的 string 替换，在动态 SQL 解析阶段将会进行变量替换
+例如，sqlMap 中如下的 sql
+select * from user where name = '${name}';
+当我们传递的参数为 "ruhua" 时，上述 sql 的解析为：
+select * from user where name = "ruhua";
+预编译之前的 SQL 语句已经不包含变量 name 了。
+综上所得， ${ } 的变量的替换阶段是在动态 SQL 解析阶段，而 #{ }的变量的替换是在 DBMS 中。
+-->
+<mapper namespace="net.dagongsoft.platform.applyLoanManage.dao.ApplyLoanDao">
+    <sql id="sqlColumn">
+	   id,                  
+	   requestLimit,         
+	   loanPeriod,           
+	   hopeRate,             
+	   loanBridge,           
+	   loanUse,              
+	   firstSourceRepayment, 
+	   secondSourceRepayment,
+	   applyStatus,          
+	   customerUserId,
+	   loanProjectName,
+	   flowNode,
+	   flowNodeStatus,
+	   flowNodeTime,
+	   flowHandlePerson,
+	   flowStatus,
+	   clientEnd,
+	   flowType,
+	   applyFlowId,
+	   startTime
+   </sql>
+
+    <!-- 公共where条件 -->
+    <sql id="commonWhere">
+        <if test="id!=null and ''!=id">
+            and id = #{id}
+        </if>
+        <if test="applyStatus != null and '' != applyStatus">
+            and applyStatus = #{applyStatus}
+        </if>
+        <if test="clientEnd != null and '' != clientEnd">
+            and clientEnd = #{clientEnd}
+        </if>
+        <if test="customerUserId != null and '' != customerUserId">
+            and customerUserId = #{customerUserId}
+        </if>
+        <if test="loanProjectName != null and '' != loanProjectName">
+            and loanProjectName LIKE concat('%',#{loanProjectName},'%')
+        </if>
+        <if test="applyFlowId != null and '' != applyFlowId">
+            and applyFlowId = #{applyFlowId}
+        </if>
+        <!--choose标签，通常用于sql逻辑判断-->
+        <if test="areaId!=null and ''!=areaId">
+            <choose>
+                <when test="areaId == 'bridicms'">and areaId != 'other'</when>
+                <otherwise>
+                    and areaId = #{areaId}
+                </otherwise>
+            </choose>
+        </if>
+        <if test="startTime != null and '' != startTime">
+            and startTime = #{startTime}
+        </if>
+    </sql>
+
+    <!--
+     使用Mybatis持久化框架进行数据查询需要返回的一个实体类的集合,
+     在<select>标签中需要定义的一个属性叫resultMap
+     -->
+    <resultMap type="net.dagongsoft.test.domain.TTest" id="user">
+        <id property="id" column="id" javaType="String"/>
+        <result property="userName" column="userName"/>
+        <result property="password" column="password"/>
+    </resultMap>
+    <select id="getByLogin" resultMap="user">
+        select * from user where
+        userName=#{userName}
+    </select>
+
+    <!--获取实体-->
+    <select id="get" resultType="net.dagongsoft.platform.applyLoanManage.domain.TApplyLoan">
+        SELECT
+        <include refid="sqlColumn"/>
+        from apply_loan_information
+        where id = #{id}
+    </select>
+
+    <!-- 查询总条数-->
+    <select id="listNum" resultType="Long">
+        SELECT
+        count(*)
+        FROM apply_loan_information
+        <where>
+            <include refid="commonWhere"></include>
+        </where>
+    </select>
+
+    <!-- 查询所有信息 -->
+    <select id="queryList"
+            resultType="net.dagongsoft.platform.applyLoanManage.domain.TApplyLoan"
+            parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan">
+        SELECT
+        *
+        FROM apply_loan_information
+        <where>
+            <include refid="commonWhere"></include>
+        </where>
+        <if test="sortord!=null and ''!= sortord">
+            order by ${sortord}
+        </if>
+        <if test="offset != '-1' ">
+            limit #{offset},#{rows}
+        </if>
+    </select>
+
+    <!-- 查询所有信息 -->
+    <!-- 关联查询只取流程节点表里最新的一条-->
+    <select id="findList"
+            resultType="net.dagongsoft.platform.applyLoanManage.domain.TApplyLoan"
+            parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan">
+        SELECT
+        <include refid="sqlColumn"/>
+        FROM apply_loan_information a LEFT JOIN
+        (SELECT flowNode,flowNodeStatus,flowNodeTime,flowHandlePerson,flowStatus,applyFlowId "aflowid"FROM
+        apply_flow_status_information ORDER BY flowNodeTime DESC LIMIT 1) b
+        ON a.id=b.aflowid
+        <where>
+            <include refid="commonWhere"></include>
+        </where>
+        <if test="sortord!=null and ''!= sortord">
+            order by ${sortord}
+        </if>
+        <if test="offset != '-1' ">
+            limit #{offset},#{rows}
+        </if>
+    </select>
+
+    <!-- 添加 -->
+    <insert id="insert"
+            parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan">
+        <selectKey keyProperty="id" keyColumn="id" resultType="String" order="BEFORE">
+            select concat('ApplyLoan_',replace(uuid(),'-','')) uuid from dual
+        </selectKey>
+        INSERT INTO apply_loan_information (
+        id,
+        requestLimit,
+        loanPeriod,
+        hopeRate,
+        loanBridge,
+        loanUse,
+        firstSourceRepayment,
+        secondSourceRepayment,
+        applyStatus,
+        customerUserId,
+        loanProjectName,
+        clientEnd,
+        flowType,
+        applyFlowId,
+        startTime
+        )
+        VALUES (
+        #{id},
+        #{requestLimit},
+        #{loanPeriod},
+        #{hopeRate},
+        #{loanBridge},
+        #{loanUse},
+        #{firstSourceRepayment},
+        #{secondSourceRepayment},
+        #{applyStatus},
+        #{customerUserId},
+        #{loanProjectName},
+        #{clientEnd},
+        #{flowType},
+        #{applyFlowId},
+        #{startTime}
+        )
+    </insert>
+
+    <!-- 修改 -->
+    <update id="update"
+            parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan">
+        UPDATE apply_loan_information
+        <set>
+            <if test="requestLimit != null">
+                requestLimit = #{requestLimit},
+            </if>
+            <if test="loanPeriod != null">
+                loanPeriod = #{loanPeriod},
+            </if>
+            <if test="hopeRate != null">
+                hopeRate = #{hopeRate},
+            </if>
+            <if test="loanBridge != null">
+                loanBridge = #{loanBridge},
+            </if>
+            <if test="loanUse != null">
+                loanUse = #{loanUse},
+            </if>
+            <if test="loanUse != null">
+                loanUse = #{loanUse},
+            </if>
+            <if test="firstSourceRepayment != null">
+                firstSourceRepayment = #{firstSourceRepayment},
+            </if>
+            <if test="secondSourceRepayment != null">
+                secondSourceRepayment = #{secondSourceRepayment},
+            </if>
+            <if test="applyStatus != null">
+                applyStatus = #{applyStatus},
+            </if>
+            <if test="customerUserId != null">
+                customerUserId = #{customerUserId},
+            </if>
+            <if test="clientEnd != null">
+                clientEnd = #{clientEnd},
+            </if>
+            <if test="flowType != null">
+                flowType = #{flowType},
+            </if>
+            <if test="applyFlowId != null">
+                applyFlowId = #{applyFlowId},
+            </if>
+            <if test="startTime != null">
+                startTime = #{startTime}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除-->
+    <update id="delete"
+            parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan">
+        UPDATE apply_loan_information
+        WHERE id = #{id}
+    </update>
+
+    <!-- 查询所有信息 -->
+    <select id="queryConList" parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan"
+            resultType="net.dagongsoft.platform.applyLoanManage.domain.TApplyLoan">
+        select loan.loanProjectName,loan.requestLimit,loan.hopeRate,loan.startTime,`user`.customerName,opt.*
+        from apply_loan_information loan
+        join rate_result_opinion opt on opt.loanId = loan.id
+        join customer_user user on `user`.id = loan.customerUserId
+        <where>
+            1=1
+            <if test=" userIds != null and userIds !='' ">
+                and `user`.businessManId in (${userIds})
+            </if>
+            <if test=" customerName != null and customerName !='' ">
+                and `user`.customerName like concat('%',#{customerName},'%')
+            </if>
+        </where>
+        <if test="sortord!=null and ''!= sortord">
+            order by ${sortord}
+        </if>
+        <if test="offset != '-1' ">
+            limit #{offset},#{rows}
+        </if>
+    </select>
+
+    <!-- 查询用户下所有报告信息 -->
+    <select id="queryAllList" parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan"
+            resultType="java.util.Map">
+        select loan.requestLimit,loan.hopeRate,loan.startTime,`user`.customerName,opt.*,company.loanCompanyName
+        from rate_result_opinion opt
+        left join apply_loan_information loan on opt.loanId = loan.id
+        left join customer_user user on loan.customerUserId =`user`.id
+        left join loan_company_information company on loan.id = company.applyFlowId
+        <where>
+            1=1
+            <if test="customerUserId != null and '' != customerUserId">
+                and loan.customerUserId = #{customerUserId}
+            </if>
+        </where>
+        ORDER BY loan.startTime desc
+        <if test="offset != '-1' ">
+            limit #{offset},#{rows}
+        </if>
+    </select>
+
+    <!-- 查询用户名下所有报告信息数量 -->
+    <select id="queryAllListNum" parameterType="net.dagongsoft.platform.applyLoanManage.pageModel.ApplyLoan"
+            resultType="java.lang.Long">
+        select count(1)
+        from rate_result_opinion opt
+        left join apply_loan_information loan on opt.loanId = loan.id
+        left join customer_user user on loan.customerUserId =`user`.id
+        left join loan_company_information company on loan.id = company.applyFlowId
+        <where>
+            1=1
+            <if test="customerUserId != null and '' != customerUserId">
+                and loan.customerUserId = #{customerUserId}
+            </if>
+        </where>
+        ORDER BY loan.startTime desc
+    </select>
+</mapper>

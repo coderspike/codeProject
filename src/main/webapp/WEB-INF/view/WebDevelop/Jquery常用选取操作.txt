@@ -1,0 +1,1110 @@
+Radio
+
+1.获取选中值，三种方法都可以：
+
+$('input:radio:checked').val()；
+
+$("input[type='radio']:checked").val();
+
+$("input[name='rd']:checked").val();
+
+2.设置第一个Radio为选中值：
+
+$('input:radio:first').attr('checked', 'checked');
+
+或者
+
+$('input:radio:first').attr('checked', 'true');
+
+注：attr("checked",'checked')= attr("checked", 'true')= attr("checked", true)
+
+3.设置最后一个Radio为选中值：
+
+$('input:radio:last').attr('checked', 'checked');
+
+或者
+
+$('input:radio:last').attr('checked', 'true');
+
+4.根据索引值设置任意一个radio为选中值：
+
+$('input:radio').eq(索引值).attr('checked', 'true');索引值=0,1,2....
+
+或者
+
+$('input:radio').slice(1,2).attr('checked', 'true');
+
+5.根据Value值设置Radio为选中值
+
+$("input:radio[value=http://www.2cto.com/kf/201110/'rd2']").attr('checked','true');
+
+或者
+
+$("input[value=http://www.2cto.com/kf/201110/'rd2']").attr('checked','true');
+
+6.删除Value值为rd2的Radio
+
+$("input:radio[value=http://www.2cto.com/kf/201110/'rd2']").remove();
+
+7.删除第几个Radio
+
+$("input:radio").eq(索引值).remove();索引值=0,1,2....
+
+如删除第3个Radio:$("input:radio").eq(2).remove();
+
+8.遍历Radio
+
+$('input:radio').each(function(index,domEle){
+
+     //写入代码
+
+});
+
+
+
+
+
+
+
+ DropDownList
+
+1.   获取选中项：
+
+获取选中项的Value值：
+
+$('select#sel option:selected').val();
+
+或者
+
+$('select#sel').find('option:selected').val();
+
+获取选中项的Text值：
+
+$('select#seloption:selected').text();
+
+或者
+
+$('select#sel').find('option:selected').text();
+
+2.  获取当前选中项的索引值：
+
+$('select#sel').get(0).selectedIndex;
+
+3.  获取当前option的最大索引值：
+
+$('select#sel option:last').attr("index")
+
+4.  获取DropdownList的长度：
+
+$('select#sel')[0].options.length;
+
+或者
+
+$('select#sel').get(0).options.length;
+
+5.  设置第一个option为选中值：
+
+$('select#sel option:first').attr('selected','true')
+
+或者
+
+ $('select#sel')[0].selectedIndex = 0;
+
+
+
+
+
+
+
+<li class="level1">
+
+<a href ="#none">裤子</a>
+
+<ul class ="level2">
+
+<li><a href ="#none">短裤</a></li>
+
+<li><a href ="#none">短裤2</a></li>
+
+<li><a href ="#none">短裤3</a></li>
+
+<li><a href ="#none">短裤4</a></li>
+
+</ul>
+
+</li>
+
+
+
+用jquery实现这个导航栏的效果
+
+$(".level>a").click(function(){
+
+$this.addClass("current").next().show().parent().sibilings().children("a").removeClass("current").next().hide();
+
+return false;
+
+});
+
+当鼠标单击A元素的时候，给其添加一个名为Current的class，然后将紧邻后面的元素显示出来，同时将它父辈同辈元素内部的子元素<a>都去掉一个名为current的class,并且将它们后面的元素都隐藏。
+
+
+
+
+
+检查是否被选中
+
+var ObjHTML = domObj.innerHTML javascript中的用法
+
+$("#foo").html; jquery中的用法
+
+demo04:
+
+var $cr= $("#cr"); //jquery对象
+
+var cr=$cr.get(0); //Dom对象
+
+alert(cr.checked) //检测这个checkbox是否被选中
+
+
+
+判断复选框是否被选中
+
+<input type="checkbox" id ="cr"/><label for="cr">我以阅读协议</label>
+
+
+
+$(document).ready(function(){
+
+var $cr=$("#cr");
+
+var cr=$cr[0];
+
+$cr.click(function(){
+
+if(cr.checked){
+
+alert("谢谢您的支持，可以继续操作")；
+
+}
+
+})
+
+})
+
+
+
+选取元素
+
+<script type="text/javascript">
+
+$('#tt').css("color","red");
+
+<script>
+
+demo07:
+
+//选取#prev之后所有同辈的div元素
+
+$("#prev~ div").css("background","#bbffaa");
+
+$("#prev).nextAll("div").css("background","#bbffaa");
+
+//选取#prev所有的同辈div元素，无论前后位置
+
+$("#prev).siblings("div").css("background","#bbffaa");
+
+
+
+
+
+隐藏上面获取到的jquery对象
+
+var $category = $("ul li:gt(5):not(:last)");
+
+$category.hide(); //隐藏上面获取到的jquery对象
+
+
+
+
+
+显示全部
+
+var $toggleBtn = $('div.showmore>a');
+
+然后给按钮添加事件，使用show()方法把隐藏的品牌列表显示出来
+
+$toggleBtn.click(function(){
+
+$toggle.show();//显示全部品牌
+
+return false;    //超链接不跳转
+
+});
+
+之后将显示全部品牌按钮文本切换成精简显示品牌
+
+$(this).find("span").css("background","url(img/up.gif) no-repeat 0 0").text("精简显示品牌")；
+
+
+
+
+
+$(function(){//等待dom加载完毕
+
+var $category = $("ul li:gt(5):not(:last)");//获得索引值大于5的品牌集集合对象（除最后一条）
+
+$category.hide();//隐藏上面获取到的jquery对象
+
+$('ul li').filter(":contains('佳能'),:contains('尼康'),:contains("奥林巴斯")").addClass("promoted");  //添加高亮样式
+
+return false;
+
+})
+
+$('ul li').removeClass("prometed");
+
+
+
+
+
+var $li = $("ul li:eq(1)");
+
+var li_txt =$li.text();
+
+alert (li_text);
+
+
+
+
+
+var $li_1=$("<little='香蕉'>香蕉</li>");
+
+var $parent=$("ul");
+
+var $two_li=$("ul li:eq(1)");
+
+$parent.append($li_1);
+
+$parent.prepend($li_1);
+
+$li_1.insertAfter($two_li);
+
+toggleClass
+
+toggleClass() 对设置或移除被选元素的一个或多个类进行切换。
+
+该方法检查每个元素中指定的类。如果不存在则添加类，如果已设置则删除之。这就是所谓的切换效果。
+
+不过，通过使用 "switch" 参数，您能够规定只删除或只添加类。
+
+对设置和移除所有 <p> 元素的 "main" 类进行切换：
+
+语法
+
+$(selector).toggleClass(class,switch)
+
+参数
+
+描述
+
+class
+
+必需。规定添加或移除 class 的指定元素。
+
+如需规定若干 class，请使用空格来分隔类名。
+
+switch
+
+可选。布尔值。规定是否添加或移除 class。
+
+
+
+$("button").click(function(){
+
+  $("p").toggleClass("main");
+
+});
+
+
+
+$("button#demo").click(function(){$("img").hide()})
+
+
+
+$('#nav li a').on('click',function(){
+
+$('#nav li').removeClass('active');
+
+$(this).parent().addClass('active');
+
+$('#ifm').attr('src',$(this).attr('path'));
+
+});
+
+选取字段是拼接字符串
+
+$( "#" + tbodyId +" tr")
+
+
+
+$( "#delmodel"+　i).on('click',function(){
+
+alert($(this).parent());
+
+});
+
+选取节点
+
+获取父节点的  id
+
+alert($(this).parent().attr("id"));
+
+
+
+获取子元素
+
+//获取id=div1下的子元素的个数
+
+$('#div1').children().length;
+
+//获取id=div1下的span元素个数
+
+$('#div1').children('span').length;
+
+
+
+选取某一个具体的td
+
+alert($("#lim-module-td td").eq(1).text());
+
+alert($("#lim-module-td").find('td').eq(1).text());
+
+$('#test').children().eq(1).css({'display':'inline-block'});
+
+
+
+更改某一行td的样式保证其余的不更改
+
+$("#moduleName").change(function(){
+
+for(var i=0;i<$("#lim-module-td").children().length;i++){
+
+if($(this).val()==$("#lim-module-td td").eq(i).text())
+
+{
+
+$("#lim-module-td").children().eq(i).css("background","#18A974");
+
+
+
+}else
+
+{
+
+$("#lim-module-td").children().eq(i).css("background","#E1E6EC");
+
+}
+
+}
+
+  });
+
+
+
+
+
+ 控制CSS
+
+ $("#id").css('display','block');
+
+
+
+操作table tr td
+
+ 1.鼠标移动行变色
+
+$("#table1 tr").hover(function(){
+
+$(this).children("td").addClass("hover")
+
+},function(){
+
+$(this).children("td").removeClass("hover")
+
+})
+
+ 方法二：
+
+$("#table1 tr:gt(0)").hover(function() {
+
+$(this).children("td").addClass("hover");
+
+}, function() {
+
+$(this).children("td").removeClass("hover");
+
+});
+
+2.奇偶行不同颜色
+
+$("#table1 tbody tr:odd").css("background-color", "#bbf");
+
+$("#table1 tbody tr:even").css("background-color","#ffc");
+
+$("#table1 tbody tr:odd").addClass("odd")
+
+$("#table1 tbody tr:even").addClass("even")
+
+3.隐藏一行
+
+$("#table1 tbody tr:eq(3)").hide();
+
+4.隐藏一列
+
+$("#table1 tr td::nth-child(3)").hide();
+
+方法二：
+
+[html]   view plain copy
+
+$("#table1 tr").each(function(){$("td:eq(3)",this).hide()});
+
+5.删除一行
+
+//删除除第一行外的所有行
+
+$("#table1 tr:not(:first)").remove();
+
+//删除指定行
+
+$("#table1 tr:eq(3)").remove();
+
+6.删除一列
+
+//删除除第一列外的所有列
+
+$("#table1 tr th:not(:nth-child(1))").remove();
+
+$("#table1 tr td:not(:nth-child(1))").remove();
+
+//删除第一列
+
+$("#table1 tr td::nth-child(1)").remove();
+
+7.得到（设置）某个单元格的值
+
+//设置table1,第2个tr的第一个td的值。
+
+$("#table1 tr:eq(1) td:nth-child(1)").html("value");
+
+//获取table1,第2个tr的第一个td的值。
+
+$("#table1 tr:eq(1) td:nth-child(1)").html();
+
+8.插入一行：
+
+< strong > //在第二个tr后插入一行
+
+$(" < tr > < td > 插入3 </ td > < td > 插入 </ td > < td > 插入 </ td > < td > 插入 </ td> </ tr > ").insertAfter($("#table7 tr:eq(1)")); </ strong >
+
+9、获取每一行指定的单元格的值
+
+var  arr  = [];
+
+$("#table1 tr td:nth-child(1)").each(function (key, value) {
+
+arr.push($(this).html());
+
+});
+
+var  result  =  arr .join(',');
+
+10、全选或全不选
+
+//方法一：
+
+//全选或全不选 此传入的参数为event 如：checkAll(event)
+
+ function checkAll(evt)
+
+ {
+
+  evt = evt ?evt:window.event;
+
+ var  chall = evt .target?evt.target:evt.srcElement;
+
+ var  tbl =$("#table1");
+
+ var  trlist = tbl .find("tr");
+
+ for(var  i = 1 ;i < trlist.length ;i++)
+
+ {
+
+ var  tr =$(trlist[i]);
+
+ var  input = tr .find("INPUT[ type = 'checkbox' ]");
+
+ input.attr("checked",chall.checked);
+
+ }
+
+ }
+
+
+
+//方法二：
+
+
+
+//全选或全不选 此传入的参数为this 如：checkAll(this)
+
+function checkAll(evt)
+
+{
+
+var  tbl =$("#table1");
+
+var  trlist = tbl .find("tr");
+
+for(var  i = 1 ;i < trlist.length ;i++)
+
+{
+
+var  tr =$(trlist[i]);
+
+var  input = tr .find("INPUT[ type = 'checkbox' ]");
+
+input.attr("checked",evt.checked);
+
+}
+
+}
+
+
+
+//方法三：
+
+//全选或全不选 此传入的参数为this 如：checkAll(this)
+
+function checkAll(evt)
+
+{
+
+$("#table1 tr").find("input[ type = 'checkbox' ]").each(function(i){
+
+$(this).attr("checked",evt.checked)
+
+});
+
+}
+
+
+
+//方法四：
+
+//全选或全不选 此传入的参数为this 如：checkAll(this)
+
+function checkAll(evt)
+
+{
+
+$("#table1 tr").find("input[ type = 'checkbox' ]").attr("checked",evt.checked);
+
+}
+
+11、客户端动态添加行、删除行
+
+function btnAddRow()
+
+{
+
+//行号是从0开始，最后一行是新增、删除、保存按钮行 故减去2
+
+var  rownum =$("#table1 tr").length-2;
+
+var  chk = "<input type='checkbox' id='chk_" +rownum+"'  name ='chk_"+rownum+"' /> ";
+
+var  text = "<input type='text' id='txt_" +rownum+"'  name = 'txt_"+rownum+"'   width= '75px' /> ";
+
+var  sel = "<select id='sel_" +rownum+"' > < option   value = '1' > 男 </ option > <option   value = '0' > 女 </ option > </ select > ";
+
+var  row = "<tr><td>" +chk+" </ td > < td > "+text+" </ td > < td > "+sel+" </ td > < td> "+text+" </ td > < td > "+text+" </ td > </ tr > ";
+
+$(row).insertAfter($("#table1 tr:eq("+rownum+")"));
+
+}
+
+
+
+//客户端删除一行
+
+//每次只能删除一行，删除多行时出错
+
+function btnDeleteRow()
+
+{
+
+$("#table1 tr").find("input[ type = 'checkbox' ]").each(function(i){
+
+if($(this).attr("checked"))
+
+{
+
+if(i!=0)//不能删除行标题
+
+{
+
+$("#table1 tr:eq("+i+")").remove();
+
+}
+
+}
+
+});
+
+}
+
+
+
+//这个比上面的要好，可以一下删除多个记录
+
+function btnDeleteRow()
+
+{
+
+$("#table1 tr").each(function(i){
+
+var  chk =$(this).find("input[ type = 'checkbox' ]");
+
+if(chk.attr("id")!="checkall")//不能删除标题行
+
+{
+
+if(chk.attr("checked"))
+
+{
+
+$(this).remove();
+
+}
+
+}
+
+});
+
+}
+
+//客户端保存
+
+function btnSaveClick()
+
+{
+
+//find()方法中我暂时不知道如何设定多个筛选条件，所以下面得不到select列表的值
+
+//$("#table1 tr td").find("input[ type = 'text' ]" || "select").each(function(i){
+
+//alert($(this).val());
+
+//});
+
+
+
+$("#table1 tr").find("td").each(function(i){
+
+if($(this).find("input[ type = 'text' ]").length > 0)
+
+{
+
+alert($(this).find("input[ type = 'text' ]").val());
+
+}
+
+else if($(this).find("select").length > 0)
+
+{
+
+alert($(this).find("select").val());
+
+}
+
+});
+
+}
+
+
+
+获取select的taxt和value
+
+1. $("#select_id").change(function(){//code...});   //为Select添加事件，当选择其中一项时触发
+
+2. var checkText=$("#select_id").find("option:selected").text();  //获取Select选择的Text
+
+3. var checkValue=$("#select_id").val();  //获取Select选择的Value
+
+4. var checkIndex=$("#select_id ").get(0).selectedIndex;  //获取Select选择的索引值
+
+5. var maxIndex=$("#select_id option:last").attr("index");  //获取Select最大的索引值
+
+
+
+获取当前
+
+$(this).find("table tr:first-child td").text();
+
+提交表单
+
+function  calculate(){
+
+        var f =$('#searchForm');
+
+        f.form('submit', {
+
+        url: "modelStudyAction!calculate.action",
+
+        onSubmit: function(){
+
+        var isValid = $(this).form('validate');
+
+        if (!isValid){
+
+        }
+
+        return isValid;    // 返回false将停止form提交
+
+        },
+
+        success: function(data){
+
+        var parsedJson = jQuery.parseJSON(data);
+
+        var x=parsedJson.msg
+
+             $('#xxx').html(parsedJson.msg);
+
+  }
+
+  });
+
+  }
+
+<form id="searchForm">
+
+                <div style="padding:20px; margin: 0px;height: 24px;">
+
+                <input  id="number1" type="text" name="parameter1" class="t_d" style="width:22px;" />
+
+                <span class="title">+</span>
+
+                <input  id="number1" type="text" name="parameter2" class="t_d" style="width:22px;" />
+
+                <span class="title">=</span>
+
+                <span id ="xxx" class="title"></span>
+
+                <a id="" class="easyui-linkbutton blankSpace blankSpace" href="javascript:void(0)" onclick="calculate();">计算</a>
+
+                </div>
+
+                </form>
+
+
+
+
+
+本章节介绍一下如何当页面加载完毕再去执行响应的代码。这个是比较基础的问题，下面做一下简单介绍。
+
+解决方案一:
+
+$(document).ready(function(){
+
+  //code
+
+})
+
+解决方案二:
+
+jQuery(document).ready(function(){
+
+  //code
+
+})
+
+解决方案三:
+
+window.onload=function(){
+
+  //code
+
+}
+
+解决方案四:
+
+将jquery代码放入body的后面，这样也会实现相同的效果。
+
+
+
+提交表单
+
+function  calculate(){
+
+        var f =$('#searchForm');
+
+        f.form('submit', {
+
+        url: "modelStudyAction!calculate.action",
+
+        onSubmit: function(){
+
+        var isValid = $(this).form('validate');
+
+        if (!isValid){
+
+        }
+
+        return isValid;    // 返回false将停止form提交
+
+        },
+
+        success: function(data){
+
+        var parsedJson = jQuery.parseJSON(data);
+
+        var x=parsedJson.msg
+
+             $('#xxx').html(parsedJson.msg);
+
+  }
+
+  });
+
+  }
+
+<form id="searchForm">
+
+                <div style="padding:20px; margin: 0px;height: 24px;">
+
+                <input  id="number1" type="text" name="parameter1" class="t_d" style="width:22px;" />
+
+                <span class="title">+</span>
+
+                <input  id="number1" type="text" name="parameter2" class="t_d" style="width:22px;" />
+
+                <span class="title">=</span>
+
+                <span id ="xxx" class="title"></span>
+
+                <a id="" class="easyui-linkbutton blankSpace blankSpace" href="javascript:void(0)" onclick="calculate();">计算</a>
+
+                </div>
+
+                </form>
+
+
+
+
+
+Js/Jquery获取input file的文件名
+
+html代码:
+
+    <input type="file" name="file" id="file" class="input_text80"></input>
+
+js:
+
+方法一：字符串截取
+
+var file = $("#file").val();
+
+var fileName = getFileName(file);
+
+
+
+function getFileName(o){
+
+    var pos=o.lastIndexOf("\\");
+
+    return o.substring(pos+1);
+
+}
+
+
+
+方法二：正则表达式
+
+var file = $("#file").val();
+
+var strFileName=file.replace(/^.+?\\([^\\]+?)(\.[^\.\\]*?)?$/gi,"$1");  //正则表达式获取文件名，不带后缀
+
+var FileExt=file.replace(/.+\./,"");   //正则表达式获取后缀
+
+获取标签数量，获取包含某字段的标签数量
+
+//a标签数量
+
+  var totoalNum = $("a").length;
+
+  $("#done").text("共有接口："+totoalNum);
+
+
+
+//包含未完成字段的a标签数量
+
+  var undoneNum=$("a:contains('未完成')").length;
+
+  $("#undone").text("未完成接口："+undoneNum);
+
+1、JQuery的核心的一些方法
+
+each(callback) '就像循环
+
+$("Element").length; ‘元素的个数，是个属性
+
+$("Element").size(); '也是元素的个数，不过带括号是个方法
+
+$("Element").get(); ‘某个元素在页面中的集合，以数组的形式存储
+
+$("Element").get(index); '功能和上面的相同，index表示第几个元素，数组的下标
+
+$("Element").get().reverse(); ‘把得到的数组方向
+
+$("Element1").index($("Element2")); '元素2在元素1中的索引值是。
+
+2、基本对象获取(注意这里获取的都是Jquery对象而不是Dom对象哦，但是他俩是可以转换滴)
+
+$("*") ‘表示获取所有对象 但是我至今没这样用过
+
+$("#XXX") '获得 id=XXX 的元素对象（id可以是标签的id或CSS样式id） 常用
+
+$("input[name='username']") 获得input标签中name='userName'的元素对象 常用
+
+$(".abc") ' 获得样式class的名字是.abc的元素对象 常用
+
+$("div") ' 标签选择器 选择所有的div元素 常用
+
+$("#a,.b,span") '表示获得ID是a的元素和使用了类样式b的元素以及所有的span元素
+
+$("#a .b p") 'ID号是a的并且使用了 b样式的 所有的p元素
+
+3、层级元素获取
+
+$("Element1 Element2 Element3 ....") '前面父级 后面是子集
+
+$("div > p") '获取div下面的所有的 p元素
+
+$("div + p") 'div元素后面的第一个 p元素
+
+$("div ~ p") 'div后面的所有的 p元素
+
+4、简单对象获取
+
+$("Element:first") 'HTML页面中某类元素的第一个元素
+
+$("Element:last") 'HTML页面中某类元素的最后一个元素
+
+$("Element:not(selector)") '去除所有与给定选择器匹配的元素,如：
+
+$("input:not(:checked)") 表示选择所有没有选中的复选框
+
+$("Element:even") '获得偶数行
+
+$("Element:odd“）'获得奇数行
+
+$("Element:eq(index)") '取得一个给定的索引值
+
+$("Element:gt(index)") '取得给定索引值的元素 之后的所有元素
+
+$("Element:lt(index)") '取得给定索引值的元素 之前的所有元素
+
+5、内容对象的获取和对象可见性
+
+$("Element:contains(text)") '元素中是否包含text文本内容
+
+$('Element:empty") '获得元素不包含子元素或文本的
+
+$("Element:partnt") '获得元素包含子元素或文本的
+
+$("Element:has(selector)") ‘是否包含某个元素， 如：$("p:has(span)")表示所有包含span元素的p元素
+
+$("Element:hidden") '选择所有可见元素
+
+$("Element:visible") '选择所有不可见元素
+
+6、其他对象获取方法
+
+$("Element[id]") '所有带有ID属性的元素
+
+$("Element[attribute = youlika ]" '获得所有某个属性为youlika的元素
+
+$("Element[attribute != youlika ]" '获得所有某个属性为不是youlika的元素
+
+$("Element[attribute ^= youlika ]" '获得所有某个属性为不是youlika的开头的元素
+
+$("Element[attribute $= youlika ]" '获得所有某个属性为不是youlika的结尾的元素
+
+$("Element[attribute *= youlika ]" '获得所有某个属性包含youlika的开头的元素
+
+$("Element[selector1][selector2][....]") '符合属性选择器，比如$("input[id][name][value=youlika ]")表示获得带有ID、Name以及value是youlika 的input元素。
+
+7、子元素的获取
+
+$("Element:nth-child(index)") '选择父级下面的第n个元素
+
+$("Element:nth-child(even)") '选择父级下面的偶数
+
+$("Element:nth-child(odd)") '选择父级下面的奇数
+
+$("Element:nth-child(3n+1)") '表达式
+
+$("Element:first-child") '选择父级下面的第一个子元素
+
+$("Element:last-child") '选择父级下面的最后一个子元素
+
+$("Element:only-child") '匹配父级下的唯一的一个子级元素，例如dt在dl列表中唯一，那么将选择dt
+
+8、表单对象获取
+
+$(:input)//查找所有的Input元素，当然也包括下拉列表，文本域，单选框，复选框等。
+
+$(:text)//匹配所有的单行文本框
+
+$(:password)//匹配所有的密码框
+
+$(:radio)//匹配所有的单选按钮
+
+$(:checkbox)//匹配所有的复选框
+
+$(:submit)//匹配所有的提交按钮
+
+$(:image)//匹配所有的图像域，例如
+
+$(:reset)//匹配所有的重置按钮
+
+$(:button)//匹配所有的按钮
+
+$(:file)//匹配所有的文件上传域
+
+$(:hidden)//匹配所有的不可见元素或者type为hidden的元素
+
+$(:enabled)//匹配所有可用的input元素，比如radio:enabled表示匹配所有可用的单选按钮
+
+$(:disabled)//匹配所有的不可用input元素，作用与上相反
+
+$(:checked)//匹配所有选中的复选框元素
+
+$(:selected)//匹配所有的下拉列表
+
+9、元素属性的设置与移除
+
+$("Element").attr(name) '取得第一个匹配的属性值，比如$("img").attr("src")
+
+$("Element".attr(key,value)") '某一个元素设置属性
+
+$("Element".attr({key:value,key1:value,....})) ‘为某个元素一次性设置多个属性
+
+$("Element").attr(key,function) '为所有匹配的元素设置一个计算的属性值。
+
+$("Element").removeAttr(name)//移除某一个属性
+

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit-1.7.xsd">
+
+    <!-- 连接工厂的配置 -->
+    <rabbit:connection-factory id="connectionFactory"
+                               host="${rabbitmq.host}"
+                               port="${rabbitmq.port}"
+                               virtual-host="${rabbitmq.vhost}"
+                               username="${rabbitmq.username}"
+                               password="${rabbitmq.password}"/>
+
+    <!--定义rabbit template用于数据的接收和发送 -->
+    <rabbit:template id="amqpTemplate" connection-factory="connectionFactory"
+                     exchange="exchangeTest"/>
+
+    <!--通过指定下面的admin信息，当前producer中的exchange和queue会在rabbitmq服务器上自动生成 -->
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+    <!--定义queue -->
+    <rabbit:queue name="queueTest" durable="true" auto-delete="false" exclusive="false"/>
+
+    <!-- 定义direct exchange，绑定queueTest -->
+    <rabbit:direct-exchange name="exchangeTest" durable="true" auto-delete="false">
+        <rabbit:bindings>
+            <rabbit:binding queue="queueTest" key="queueTestKey"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!-- 消息接收者 -->
+    <bean id="messageReceiver" class="rabbitmq.MessageConsumer"></bean>
+
+    <!-- queue litener  观察 监听模式 当有消息到达时会通知监听在对应的队列上的监听对象-->
+    <rabbit:listener-container connection-factory="connectionFactory" acknowledge="manual">
+        <rabbit:listener queues="queueTest" ref="messageReceiver"/>
+    </rabbit:listener-container>
+
+</beans>

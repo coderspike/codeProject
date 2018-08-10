@@ -1,0 +1,1357 @@
+设置div和button的不换行显示和隐藏
+
+
+<div class="form-group" id="showPdfReport" hidden="true">
+    <label for="reportURL" class="col-sm-4 control-label">报告预览:</label>
+    <div class="col-sm-6">
+        <button type="button" class="btn btn-success" id="readPdfReport"  style="display: none">预览中文报告</button>
+        <button type="button" class="btn btn-success" id="readEnPdfReport" style="display: none">预览英文报告</button>
+    </div>
+</div>
+
+$("#showPdfReport").prop("hidden",false);
+$("#readEnPdfReport").css("display",'inline-block');
+-------------------------------------------------------------------------
+
+
+
+
+js通过正则去掉script标签里的内容
+
+var str="<div class='bbccom_advert'> <script type='text/javascript'>/**/(function() {if (window.bbcdotcom && bbcdotcom.adverts && bbcdotcom.adverts.slotAsync) {bbcdotcom.adverts.slotAsync('mpu', [1,2,3]);}})();/**/<//script></div>"
+
+var myReg = /<script(.*)\/script>/g;
+str=str.replace(myReg, "");
+console.log(str);
+
+-------------------------------------------------------------------------
+通过iframe实现页面局部刷新
+
+//<div style='height:document.body.offsetHeight*2;width:100%;'><iframe id='ifm'style='height:100%;width:100%'></iframe></div>
+
+
+
+<script type="text/javascript">
+
+$('#ifm').attr('src','platform/app.jsp');
+
+$('#nav>li>a').click(
+
+function()
+
+{
+
+if(this.name=='app')
+
+{
+
+$('k#ifm').attr('src','platform/app.jsp');
+
+}
+
+else if (this.name=='content')
+
+{
+
+$('#ifm').attr('src','platform/hello.jsp');
+
+}
+
+}
+
+);
+
+</script>
+
+
+
+精简版:
+
+$(function(){
+
+$('#nav li a').on('click',function(){
+
+$('#nav li').removeClass('active');
+
+$(this).parent().addClass('active');
+
+$('#ifm').attr('src',$(this).attr('path'));
+
+});
+
+$('a[name=app]').click();
+
+});
+
+防止跳转
+
+//<a name="app" href="javascript:void(0);">
+
+
+
+通过mouseover 更改属性
+
+//<script type="text/javascript">
+
+$('#version_msg_beta').mouseover(
+
+function()
+
+{
+
+$('#version_msg_beta').attr('class' ,'version-tab-btn sys-flex-one selected');
+
+$('#version_msg_release').attr('class' ,'version-tab-btn sys-flex-one');
+
+}
+
+);
+
+$('#version_msg_release').mouseover(
+
+function()
+
+{
+
+$('#version_msg_beta').attr('class' ,'version-tab-btn sys-flex-one');
+
+$('#version_msg_release').attr('class' ,'version-tab-btn sys-flex-one selected');
+
+}
+
+);
+
+</script>
+
+
+
+
+
+
+
+$(function(){
+
+$.ajax({
+
+url: "updateManageAction!datagrid.action",
+
+type: "post",
+
+dataType: "json",
+
+success: function(data){
+
+for(i=0;i<data.total;i++)
+
+    {
+
+alert(data.rows[i].mobileOS);
+
+    }
+
+}
+
+});
+
+});
+
+设置disabled属性为true即为不可用状态。
+
+JS
+
+document.getElementByIdx("btn").disabled=true;
+
+jquery
+
+$("#btn").attr("disabled", true);
+
+html
+
+<input type="button" value="提交" id="btn">
+
+Jquery 提交表单
+
+function  calculate(){
+
+        var f =$('#searchForm');
+
+        f.form('submit', {        //这是easyui的写法，用的话需引用包
+
+        url: "modelStudyAction!calculate.action",
+
+        onSubmit: function(){
+
+        var isValid = $(this).form('validate');
+
+        if (!isValid){
+
+        }
+
+        return isValid;    // 返回false将停止form提交
+
+        },
+
+        success: function(data){
+
+        var parsedJson = jQuery.parseJSON(data);
+
+        var x=parsedJson.msg
+
+        $('#xxx').html(parsedJson.msg);
+
+  }
+
+  });
+
+  }
+
+<form id="searchForm">
+
+                <div style="padding:20px; margin: 0px;height: 24px;">
+
+                <input  id="number1" type="text" name="parameter1" class="t_d" style="width:22px;" />
+
+                <span class="title">+</span>
+
+                <input  id="number1" type="text" name="parameter2" class="t_d" style="width:22px;" />
+
+                <span class="title">=</span>
+
+                <span id ="xxx" class="title"></span>
+
+                <a id="" class="easyui-linkbutton blankSpace blankSpace" href="javascript:void(0)" onclick="calculate();">计算</a>
+
+                </div>
+
+ </form>
+
+action中文乱码
+
+String t =nlrmMoxinfenxi.getShouPingZT();
+
+        String string="";
+
+        try {
+
+             string= new String(t.getBytes("iso8859-1"), "utf8");
+
+        } catch (UnsupportedEncodingException e1) {
+
+            e1.printStackTrace();
+
+        }
+
+改变选取当前行变背景色
+
+var currentActiveRow;
+
+function changeActiveRow(obj)
+
+{
+
+if(currentActiveRow) currentActiveRow.style.backgroundColor="";
+
+currentActiveRow=obj;
+
+currentActiveRow.style.backgroundColor="Red";
+
+alert(obj.rowIndex);
+
+}
+
+
+
+几种JSP页面传值方式
+
+1. 隐藏域传值：     有时候能解决一些逻辑上的先后问题
+
+<form method="post" action="client_crud.jsp" >
+
+<input type="hidden" name="id" value="<%=id %>">
+
+
+
+2. URL传值：
+
+用button
+
+a.
+
+<input name="btnModify" type="button" class="button1" onClick="self.location='client_modify.jsp?id=<%=id %>'"
+
+value="修改分销商" />
+
+b.把input的onClick=”modifyRegion()”
+
+function modifyRegion() {
+
+window.self.location = client_node_modify.jsp?id=<%=id%>";
+
+}
+
+
+
+3. JS方式传值
+
+//取得form对象提交表单
+
+with(document.getElementById("userForm")) {
+
+method="post";
+
+action="user_add.jsp?command=add";
+
+submit();
+
+}
+
+
+
+function searchItem() {
+
+with(document.forms[0]) {
+
+action="servlet/basedata/SearchItemServlet";
+
+method="post";
+
+submit();
+
+}
+
+}
+
+
+
+alert(JSON.stringify(data));
+
+
+
+
+
+$(selector).val(value)
+
+通过获取的value去动态填充radio的值
+
+function changeRadio(oRadio,oRadioValue){//传入一个对象
+
+for(var i=0;i<oRadio.length;i++) //循环
+
+     {
+
+if(oRadio[i].value==oRadioValue) //比较值
+
+      {
+
+oRadio[i].checked=true; //修改选中状态
+
+break; //停止循环
+
+      }
+
+}
+
+}
+
+获取选中的radio的value
+
+var emobileOS=$('#efappsys:checked').val();
+
+this指代当前的父级节点
+
+var o = $(this).find("[name='xxxx']");
+
+
+
+if(o.length == 0) {
+
+
+
+}
+
+前台将上传的文件转成base64
+
+  // you can do this once in a page, and this function will appear in all your files
+
+ File.prototype.convertToBase64 = function(callback){
+
+            var FR=new FileReader();
+
+            FR.onload = function(e) {
+
+callback(e.target.result)
+
+            };
+
+            FR.readAsDataURL(this);
+
+    }
+
+$("#asd").on('change',function(){
+
+      var selectedFile = this.files[0];
+
+      selectedFile.convertToBase64(function(base64){
+
+           alert(base64);
+
+      })
+
+    });
+
+html
+
+<input type="file" id="asd"/>
+
+
+
+
+
+效果同上
+
+
+
+jQuery DEMO
+
+function readImage() {
+
+    if ( this.files && this.files[0] ) {
+
+        var FR = new FileReader();
+
+        FR.onload = function(e) {
+
+             $('#img').attr( "src", e.target.result );
+
+             $('#base').text( e.target.result );
+
+        };
+
+        FR.readAsDataURL( this.files[0] );
+
+    }
+
+}
+
+$("#asd").change( readImage );
+
+PURE JAVASCRIPT VERSION:
+
+function el(id){return document.getElementById(id);}// Get elem by ID
+
+function readImage() {
+
+    if ( this.files && this.files[0] ) {
+
+        var FR= new FileReader();
+
+        FR.onload = function(e) {
+
+             el("img").src = e.target.result;
+
+             el("base").innerHTML = e.target.result;
+
+        };
+
+        FR.readAsDataURL( this.files[0] );
+
+    }
+
+}
+
+el("asd").addEventListener("change", readImage, false);
+
+HTML:
+
+<input type='file' id="asd" />
+
+<img id="img" src="" />
+
+<div id="base"></div>
+
+
+
+
+
+表单上传file
+
+//$('input[type="file"]').change(function(e){
+
+    console.log(e)//e就是你获取的file对象
+
+})
+
+控制父页面刷新
+
+parent.$('#ifm').attr('src',parent.$('#ifm').attr('src'));
+
+表单提交
+
+//jquery提交
+
+<button type="submit" class="btn btn-default">Submit</button>
+
+$('#creat-app-message').submit(function() {
+
+alert(111);
+
+});
+
+
+
+//初始化提交    （当使用这种方式 按钮的type也为submit时，会偶尔发生提交错误，原因不明）
+
+$('form').on('submit', function() {
+
+        var title = $('inpur[name=title]').val(),
+
+        content = $('textarea').val();
+
+        $(this).ajaxSubmit({
+
+            type: 'post', // 提交方式 get/post
+
+            url: 'your url', // 需要提交的 url
+
+            data: {
+
+                'title': title,
+
+                'content': content
+
+            },
+
+            success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
+
+                // 此处可对 data 作相关处理
+
+                alert('提交成功！');
+
+            }
+
+            $(this).resetForm(); // 提交后重置表单
+
+        });
+
+        return false; // 阻止表单自动提交事件
+
+    });
+
+实现刷新
+
+//$('#iframe').attr('src', $('#iframe').attr('src'));
+
+
+
+
+
+$(function(){
+
+$('#hide-choose-app').on('click',function(){
+
+$('#chooseapp').modal('hide');
+
+var appid=$('#sel_menu').find('option:selected').attr('value') //点击确定选取appID
+
+$('#ifm').attr('src', $('#ifm').attr('src')+'?appid='+appid); // 刷新带参数
+
+$('#appid').val(appid);
+
+});
+
+});
+
+获取参数
+
+${param.id} 与输入有关，相对于 request.getParameter("id")。意思是获得输入的参数id。
+
+
+
+
+
+逻辑运算
+
+逻辑与 (&&)
+
+expr1&&expr2
+
+如果expr1 能转换成false则返回expr1,否则返回expr2. 因此, 在Boolean环境中使用时, 两个操作结果都为true时返回true,否则返回false.
+
+逻辑或 (||)
+
+expr1||expr2
+
+如果expr1能转换成true则返回expr1,否则返回expr2. 因此,在boolean环境(在if的条件判断中)中使用时, 二者操作结果中只要有一个为true,返回true;二者操作结果都为false时返回false.
+
+逻辑非(!)
+
+!expr
+
+如果单个表达式能转换为true的话返回false,否则返回true.
+
+隐藏
+
+style="visibility:hidden": 使对象在网页上隐藏,但该对象在网页上所占的空间没有改变.
+
+style="display:none": 不在占用空间
+
+js拼接HTML
+
++'<button id='+'"'+i+'"'+ 'type="button" class="indexbtn indexbtn-danger">'+'删除'+'</button>  在拼接ID的时候需要注意或者
+
+在添加其他字符+'<button id='+'"delmodel'+i+'"'+ 'type="button" class="indexbtn indexbtn-danger">'+'删除'+'</button>
+
+添加mouseover事件
+
+$(".fontForModule").mouseover(function(){
+
+$(this).find('button').css('display','inline');
+
+ });
+
+$(".fontForModule").mouseout(function(){
+
+$(this).find('button').css('display','none');
+
+});
+
+Mouseout 为移出事件，一般一起使用
+
+寻找父节点子节点
+
+寻找子节点的几种方法： var imgurl=$(this).find('img').attr('src');  这种为寻找当前节点下的img节点
+
+另外几种方法：
+
+<div id="a">
+
+<span>获取span</span>
+
+<span></span>
+
+</div>
+
+
+
+<script>
+
+var way1=$("#a span:first-child");
+
+var way2=$("#a span").eq(0);
+
+var way3=$("#a span:first");
+
+var way4=$("#a").children(":first");
+
+var way5=$("#a").children().eq(0);
+
+var way6=$("#a").find("span").eq(0);
+
+</script>
+
+                                                                            寻找当前页面的父页面：parent.$('#ifm').attr('src',parent.$('#ifm').attr('src'));//控制刷新的
+
+获取父节点的  id
+
+alert($(this).parent().attr("id"));
+
+
+
+添加select的opinion
+
+ success: function(data){
+
+var selDom=$('#moduleName');
+
+for(i=0;i<data.total;i++){
+
+var value="module"+i;
+
+var text=data.rows[i].moduleName;
+
+selDom.append("<option value='"+value+"'>"+text+"</option>"); }
+
+添加功能
+
+$('#moduleSave').on('click',function(){
+
+var appIDValue=$('#ef-appid').val();
+
+var moduleName=$('#module_name').val();
+
+$.ajax({
+
+url: "moduleTableAction!add.action",
+
+type: "post",
+
+data: {
+
+'appID':appIDValue,
+
+'moduleName':moduleName,
+
+    },
+
+dataType: "json",
+
+success: function(data){
+
+$('#myAddModal').modal('hide');
+
+$('#module_name').val("");
+
+    },
+
+complete: function() {
+
+parent.$('#ifm').attr('src',parent.$('#ifm').attr('src'));
+
+        }
+
+})
+
+});
+
+})();
+
+
+
+//绑定select事件
+
+$("#rowHightStates").change(function(){
+
+alert(111);
+
+});
+
+
+
+关于select
+
+$(this).val() 可以获取当前对象的选取的值
+
+关于table
+
+控制table下tr的样式     $("#tableContent tr").css("height",$(this).val());
+
+表单提交的几种方式
+
+  <tdcolspan="2">
+
+        <inputtype="submit" value="Submit普通提交">
+
+        <inputtype="button" id="ajaxBtn" value="AJAX提交"/>
+
+        <inputtype="button" id="jqueryBtn" value="jQuery提交"/>
+
+        <inputtype="button" id="jsBtn" value="JS提交"/>
+
+        <inputtype="submit" value="onSubmit提交" />
+
+      </td>
+
+
+
+
+
+//如下为表单提交的几种常用方式
+
+<script type="text/javascript">
+
+  $(function() {
+
+    //ajax提交
+
+    $("#ajaxBtn").click(function() {
+
+      var params = $("#myform").serialize();
+
+      $.ajax( {
+
+        type : "POST",
+
+        url : "RegisterAction.action",
+
+        data : params,
+
+        success : function(msg) {
+
+          alert("success: " + msg);
+
+        }
+
+      });
+
+    })
+
+//jQuery提交
+
+    $("#jqueryBtn").click(function(){
+
+      $("#myform").submit();
+
+    })
+
+//js提交
+
+    $("#jsBtn").click(function(){
+
+      document.myform.action="RegisterAction.action";
+
+document.myform.submit();
+
+    })
+
+  })
+
+  function sumbitTest(){
+
+    return true;//return false则不会提交
+
+  }
+
+</script>
+
+
+/**
+
+ * 检验是否数字
+
+ * @param id 待校验元素id
+
+ * @returns {Boolean}，true是数字，false相反
+
+ */
+
+function chaeckNum(id){
+
+    var value=$('#'+id).val();
+
+    var reg=/^\d+$/;
+
+    if(value){
+
+        if(reg.test(value.trim())){
+
+            return true;
+
+        }else{
+
+            alert(value + "不是数字");
+
+            return false;
+
+        }
+
+    }
+
+    return true;
+
+}
+
+
+
+/**
+
+ * 校验起止日期要小于结束日期
+
+ * @param beginDateID 开始日期id
+
+ * @param endDateID 结束日期id
+
+ * @returns {Boolean}，true开始日期小于结束日期，false相反
+
+ */
+
+function dateCompare(beginDateID,endDateID){
+
+    var flag=true;
+
+    var beginDate=$('#'+beginDateID).val();
+
+    var endDate=$('#'+endDateID).val();
+
+    if(beginDate && endDate){
+
+    var beginArray=beginDate.split("-");
+
+    var endArray=endDate.split("-");
+
+    var beginTime=beginArray[0]+"/"+beginArray[1]+"/"+beginArray[2];
+
+    var endTime=endArray[0]+"/"+endArray[1]+"/"+endArray[2];
+
+    if(beginTime>endTime){
+
+        alert("起始日期不能大于结束日期！");
+
+        flag=false;
+
+    }else{
+
+        flag=true;
+
+     }
+
+    }
+
+    return flag;
+
+}
+
+
+
+//获取当前日期
+
+function getNowDate(){
+
+    var now = new Date();
+
+    var month=now.getMonth()+1;
+
+    if(month<10){
+
+         month="0"+month;
+
+     }
+
+    var day=now.getDate();
+
+    if(day<10){
+
+        day="0"+day;
+
+    }
+
+    return now.getFullYear() +"-"+month+"-"+day;
+
+}
+
+
+
+//获取上一个月的第一天
+
+function getStartMonth(){
+
+     var now = new Date();
+
+     now.setMonth(now.getMonth()-1);
+
+     var date  = "01";
+
+     var month=now.getMonth()+1;
+
+     if(month<10){
+
+         month="0"+month;
+
+     }
+
+     return now.getFullYear()+"-"+ month +"-"+date;
+
+}
+
+//获取上一个月的最后一天
+
+function getEndMonth(){
+
+    var now= new Date();
+
+    now.setDate("01");
+
+    now.setDate(now.getDate()-1);
+
+     var month=now.getMonth()+1;
+
+     if(month<10){
+
+         month="0"+month;
+
+     }
+
+     return now.getFullYear() +"-"+month+"-"+now.getDate();
+
+}
+
+
+
+//判断起末日期是否在同年同月
+
+function checkCommonMonth(startMonthId,endMonthId){
+
+    var start=$("#"+startMonthId).val();
+
+    var end=$("#"+endMonthId).val();
+
+    var startDate=start.substr(0,7);
+
+    var endDate=end.substr(0,7);
+
+    var flag=false;
+
+    if(startDate==endDate){
+
+        flag=true;
+
+    }else{
+
+        alert("起始日期与结束日期必须同月！");
+
+        flag=false;
+
+    }
+
+    return flag;
+
+}
+
+
+
+/**
+
+ * 禁止回车，禁止其他键同理
+
+ * @param id 待禁止元素id
+
+ */
+
+function forbidKeydown(id){
+
+    $("#"+id).bind('keydown',function(event){
+
+        if(event.keyCode == 13){
+
+            event.keyCode = 0;
+
+            return false;
+
+        }
+
+    });
+
+}
+
+
+
+/**
+
+ * 正则验证手机号码
+
+ * */
+
+function checkMobile(mobile){
+
+//    var m = /^1[0-9]{2}\d{4,8}$/;
+
+    var m = /^1\d{10}$/;
+
+    if(!m.test(mobile)){
+
+    return false;
+
+    }
+
+    return true;
+
+}
+
+
+
+/**
+
+ * 正则验证email格式
+
+ * */
+
+function checkEmail(mail){
+
+    var em=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+    if(!em.test(mail)){
+
+    return false;
+
+    }
+
+    return true;
+
+}
+
+
+
+/**
+
+ * 正则验证身份证号码
+
+ * */
+
+function checkIdenCode(code){
+
+    var city={11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",21:"辽宁",22:"吉林",23:"黑龙江 ",31:"上海",32:"江苏",33:"浙江",34:"安徽",35:"福建",36:"江西",37:"山东",41:"河南",42:"湖北 ",43:"湖南",44:"广东",45:"广西",46:"海南",50:"重庆",51:"四川",52:"贵州",53:"云南",54:"西藏 ",61:"陕西",62:"甘肃",63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门",91:"国外 "};
+
+    var tip = "";
+
+    var pass= true;
+
+
+
+    if(!code || !/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(code)){
+
+        tip = "身份证号格式错误";
+
+        pass = false;
+
+    }
+
+
+
+   else if(!city[code.substr(0,2)]){
+
+        tip = "地址编码错误";
+
+        pass = false;
+
+    }
+
+    else{
+
+        //18位身份证需要验证最后一位校验位
+
+        if(code.length == 18){
+
+            code = code.split('');
+
+            //∑(ai×Wi)(mod 11)
+
+            //加权因子
+
+            var factor = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 ];
+
+            //校验位
+
+            var parity = [ 1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2 ];
+
+            var sum = 0;
+
+            var ai = 0;
+
+            var wi = 0;
+
+            for (var i = 0; i < 17; i++)
+
+            {
+
+                ai = code[i];
+
+                wi = factor[i];
+
+                sum += ai * wi;
+
+            }
+
+            var last = parity[sum % 11];
+
+            if(parity[sum % 11] != code[17]){
+
+                tip = "校验位错误";
+
+                pass =false;
+
+            }
+
+        }
+
+    }
+
+    return pass;
+
+}
+
+
+
+/**
+
+ * 正则验证微信号，不少于6位，以字母开头，只能包含字母、数字、下划线和减号
+
+ * */
+
+function checkWeiXinNum(str){
+
+    var em=/^[a-zA-Z][a-zA-Z0-9_-]{5,}$/;
+
+    if(!em.test(str)){
+
+    return false;
+
+    }
+
+    return true;
+
+}
+
+
+
+
+
+js通过正则去掉script标签里的内容
+
+var str="<div class='bbccom_advert'> <script type='text/javascript'>/**/(function() {if (window.bbcdotcom && bbcdotcom.adverts && bbcdotcom.adverts.slotAsync) {bbcdotcom.adverts.slotAsync('mpu', [1,2,3]);}})();/**/<//script></div>"
+
+
+
+function chaeckNum(id){
+
+var myReg = /<script(.*)\/script>/g;
+
+str=str.replace(myReg, "");
+
+console.log(str);
+
+}
+
+
+
+表单序列化：
+在序列化表单时发现缺少某个值导致提交失败。
+
+1 判断表单中是否有值
+
+alert($("#modifyPasswordForm input[id=loginName]").val());
+
+这个输出语句经常用到。
+
+2 表单序列化后直接拼接值
+
+输出查看：alert($("#modifyPasswordForm").serialize()+"&loginName="+loginName);
+
+拼接值提交：data:$("#modifyPasswordForm").serialize()+"&loginName="+loginName,
+
+这样提交的表单中就有值了。
+
+
+获取包含某字段的标签数量
+//a标签数量
+  var totoalNum = $("a").length;
+  $("#done").text("共有接口："+totoalNum);
+
+//包含未完成字段的a标签数量
+  var undoneNum=$("a:contains('未完成')").length;
+  $("#undone").text("未完成接口："+undoneNum);
+
+
+获取当前弹出窗口的某个属性值：
+var ev = ev || window.event;
+var target = ev.target || ev.srcElement;
+alert($(target).attr('id'));
+
+
+
+替换掉不需要的标签和样式问题:
+如下内容：
+
+<div class='rowcontent'>
+    <div class='col-xs-12' id="d1">
+    <p><span style='color: rgb(51, 51, 51); font-family: ' Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei',
+        Tahoma, arial, sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal;
+        letter-spacing: normal; line-height: 36px; orphans: auto; text-align: left; text-indent: 32px; text-transform:
+        none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline
+        !important; float: none; background-color: rgb(250, 250,
+        252);'>这是测试内容啦啦啦啦啦啦啦啦啦<span style='color: rgb(51, 51, 51); font-family: ' Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei',
+        Tahoma, arial, sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal;
+        letter-spacing: normal; line-height: 36px; orphans: auto; text-align: left; text-indent: 32px; text-transform:
+        none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline
+        !important; float: none; background-color: rgb(250, 250,
+        252);'>这是测试内容啦啦啦啦啦啦啦啦啦</span></span>
+      </p></div>
+  </div>
+</div>
+其中的span标签中的样式是我不需要的，处理方法有以下两种。
+
+1、前端js处理
+
+主要思路是，获取指定部分html内容，通过替换的方式换掉不需要的标签，替换后在重新填充进去。
+
+<script type="text/javascript">
+$(function(){
+var content =  $('#d1').html();
+                content = content.replace(/<(?!(\/?p|\/?img))[^>]+>/g, "");
+                content = content.replace(/&nbsp;/g, "");
+                var str1 = "";
+                var contentArr = [];
+                $(content).each(function () {
+                    var text = $(this).html();
+alert(text);
+                    if(text){
+                        text = text.trim("");
+                    }
+                    if (text != "" && text != "&nbsp;") {
+                        contentArr.push(text);
+                    }
+                });
+                for (var i = 0; i < contentArr.length; i++) {
+                    var text = contentArr[i];
+                    if (text.match(/(<img.*?<\/img>)|(<img .*?\/?>)/g)) {
+                        str1 += "<p class='text-center'>" + text + "</p>";
+                    } else {
+                        str1 += "<p>" + text + "</p>";
+                    }
+                }
+$('#d1').html(str1);})</script>
+
+2、后台处理
+
+主要思路是通过正则替换掉不需要的内容。
+
+String contentOld = a.getArticleData().getContent();//得到没改变之前的content
+String regEx = " style=\"(.*?)\"";
+Pattern p = Pattern.compile(regEx);
+Matcher m = p.matcher(contentOld);
+if (m.find()) {
+  contentOld = m.replaceAll("");
+}
+如果上述方法没有匹配或没有删除成功可尝试下面的方法。
+
+contentOld = contentOld.replaceAll("style=\\s*\".*?\"", "");
+
+
+
+前端通过form表单的方式提供下载，前提是提供资源路径:
+
+function downloadResume(){
+
+	$.ajax({
+
+		async: false,
+
+	    type: "post",
+
+	    url: "resumeManageController/downloadResume.form",
+
+	    data:{id:resumeId},
+
+	    dataType: "JSON",
+
+	    success: function (data) {
+
+	    	console.log(JSON.stringify(data));
+
+	    	var str = "<form id='mainForm' action='"+data.obj+"' style='display: none;'>"
+
+	    	+"<input id='tableHeader' name='tableHeader' type='text'>"
+
+	    	+"</form>";
+
+	    	$("body").append(str);
+
+	    	$("#mainForm").submit();
+
+
+
+	    }
+
+	})
+
+}
+
+主要是返回的内容路径是资源文件，拼接到html中即可实现点击a标签下载的实现。
